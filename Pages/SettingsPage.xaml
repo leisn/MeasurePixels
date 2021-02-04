@@ -1,0 +1,77 @@
+﻿<Page
+    x:Class="MeasurePixels.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MeasurePixels.Pages"
+    xmlns:hp="using:MeasurePixels.Helpers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:Width="400" d:Height="600"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <hp:EnumBoolConverter x:Key="enumBoolConverter"/>
+        <Style x:Key="subTitle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <Style x:Key="caption" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#777"/>
+        </Style>
+        <Style TargetType="Slider">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="MinWidth" Value="256"/>
+            <Setter Property="TickPlacement" Value="Outside"/>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Padding="22,20">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
+            <StackPanel Spacing="15">
+                <TextBlock Style="{ThemeResource TitleTextBlockStyle}" x:Uid="SettingsTitle"  />
+
+                <StackPanel Spacing="5">
+                    <TextBlock x:Uid="SettingsThemeTitle" Style="{StaticResource subTitle}"/>
+                    <TextBlock x:Uid="SettingsThemeDesc" Style="{StaticResource caption}"/>
+                    <RadioButton x:Uid="SettingsThemeLight" GroupName="theme_mode"
+                                 IsChecked="{x:Bind settings.Theme,Mode=TwoWay,
+                                    ConverterParameter=1, Converter={StaticResource enumBoolConverter}}"/>
+                    <RadioButton x:Uid="SettingsThemeDark" GroupName="theme_mode" 
+                                 IsChecked="{x:Bind settings.Theme,Mode=TwoWay,
+                                    ConverterParameter=2, Converter={StaticResource enumBoolConverter}}"/>
+                    <RadioButton x:Uid="SettingsThemeSystem" GroupName="theme_mode" 
+                                 IsChecked="{x:Bind settings.Theme,Mode=TwoWay,
+                                    ConverterParameter=0, Converter={StaticResource enumBoolConverter}}"/>
+                </StackPanel>
+
+                <StackPanel Spacing="3">
+                    <TextBlock x:Uid="SettingsSaveTitle"  Style="{StaticResource subTitle}"/>
+                    <TextBlock  x:Uid="SettingsSaveDesc" Style="{StaticResource caption}"/>
+                    <ToggleSwitch IsOn="{x:Bind settings.AskSaveOnClose,Mode=TwoWay}"
+                                  x:Uid="SettingsSaveSwitch"/>
+                </StackPanel>
+
+                <StackPanel Spacing="5">
+                    <TextBlock x:Uid="SettingsMagnifierTitle" Style="{StaticResource subTitle}"/>
+                    <TextBlock x:Uid="SettingsMagnifierDesc" Style="{StaticResource caption}"/>
+
+                    <TextBlock x:Uid="SettingsMagnifierRadius"/>
+                    <StackPanel Orientation="Horizontal" Spacing="20">
+                        <Slider Minimum="30" Maximum="100" StepFrequency="2" TickFrequency="10"
+                            Value="{x:Bind settings.MagnifierRadius,Mode=TwoWay}"/>
+                        <TextBlock VerticalAlignment="Center" Text="{x:Bind settings.MagnifierRadius,Mode=OneWay}"/>
+                    </StackPanel>
+
+
+                    <TextBlock x:Uid="SettingsMagnifierScale"/>
+                    <StackPanel Orientation="Horizontal" Spacing="20">
+                        <Slider Minimum="2"  StepFrequency="1" Maximum="16" TickFrequency="2"
+                             Value="{x:Bind settings.MagnifierScale,Mode=TwoWay}"/>
+                        <TextBlock VerticalAlignment="Center" Text="{x:Bind settings.MagnifierScale,Mode=OneWay}"/>
+                    </StackPanel>
+                   
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

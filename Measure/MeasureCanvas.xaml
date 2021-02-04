@@ -1,0 +1,87 @@
+﻿<UserControl
+    x:Class="MeasurePixels.Measure.MeasureCanvas"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MeasurePixels.Measure"
+    xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    xmlns:hp="using:MeasurePixels.Helpers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <hp:BoolVisibleReverseConverter x:Key="reverseVisiable"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Transitions>
+            <TransitionCollection>
+                <AddDeleteThemeTransition/>
+                <EntranceThemeTransition IsStaggeringEnabled="False"/>
+            </TransitionCollection>
+        </Grid.Transitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto" MinHeight="24"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer x:Name="scroll" Background="{ThemeResource SystemAccentColor}"
+                HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto"
+                VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
+            <Grid Background="{ThemeResource MeasureCanvasBackgound}"
+                  AllowDrop="True" DragOver="Grid_DragOver" Drop="Grid_Drop">
+                <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="24"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Visibility="{x:Bind CanMeasure,Mode=OneWay,Converter={StaticResource reverseVisiable}}"
+                           x:Uid="MeasureCanvasTip"/>
+                <win2d:CanvasControl  x:Name="canvas" Draw="canvas_Draw" 
+                                      Background="{ThemeResource SystemAccentColorDark1}"
+                                      ClearColor="#1f1f1f" 
+                                      DpiScale="{x:Bind DpiScale}"
+                                      CreateResources="canvas_CreateResources"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      PointerPressed="canvas_PointerPressed"
+                                      PointerMoved="canvas_PointerMoved"
+                                      PointerReleased="canvas_PointerReleased"
+                                      PointerEntered="canvas_PointerEntered"
+                                      PointerExited="canvas_PointerExited"
+                                      IsTabStop="True"
+                                      PreviewKeyDown="canvas_KeyDown" PointerWheelChanged="canvas_PointerWheelChanged"
+                                     />
+
+            </Grid>
+        </ScrollViewer>
+
+        <Grid Grid.Row="1" Padding="12,0" 
+              Background="{ThemeResource SystemAccentColor}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="Padding" Value="0,0,0,2"/>
+                </Style>
+            </Grid.Resources>
+
+            <StackPanel Orientation="Horizontal" Spacing="5">
+                <TextBlock x:Name="coordText" 
+                           x:Uid="MesureCanvasCoord"
+                           MinWidth="60"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="5">
+                <TextBlock Text="Dpi :"/>
+                <TextBlock Text="{Binding ElementName=canvas,Path=Dpi}"/>
+                <TextBlock Text="Scale :" Margin="12,0,0,0"
+                               ToolTipService.ToolTip="Dpi Scale" ToolTipService.Placement="Bottom"/>
+                <TextBlock Text="{Binding ElementName=canvas,Path=DpiScale}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

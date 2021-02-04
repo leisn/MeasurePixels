@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppBarTitle.Text" xml:space="preserve">
+    <value>Measure Pixels</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Simple image measurement tool in pixels, support for measure segement length, angle, quadrangle edges, and point color.</value>
+  </data>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>Measure Pixels</value>
+  </data>
+  <data name="AskSaveContent.Text" xml:space="preserve">
+    <value>Would you like to save this content?</value>
+  </data>
+  <data name="AskSaveDialog.CloseButtonText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AskSaveDialog.PrimaryButtonText" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AskSaveDialog.SecondaryButtonText" xml:space="preserve">
+    <value>Don't Save</value>
+  </data>
+  <data name="AskSaveDialog.Title" xml:space="preserve">
+    <value>Save it?</value>
+  </data>
+  <data name="AskSaveSetting.Text" xml:space="preserve">
+    <value>You can change whether this dialog will display in settings. </value>
+  </data>
+  <data name="ButtonCapture.Label" xml:space="preserve">
+    <value>Capture</value>
+  </data>
+  <data name="ButtonCapture.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Capture snapshot from screen or application (Ctrl+P)</value>
+  </data>
+  <data name="ButtonClear.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Clear Canvas</value>
+  </data>
+  <data name="ButtonDelete.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Delete (Del, Ctrl+D)</value>
+  </data>
+  <data name="ButtonGoBack.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Navigate Backward</value>
+  </data>
+  <data name="ButtonPaste.Label" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="ButtonPaste.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Replace image from clipboard (Ctrl+V)</value>
+  </data>
+  <data name="ButtonRedo.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Redo (Ctrl+Y)</value>
+  </data>
+  <data name="ButtonSave.Label" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ButtonSave.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Save To Image (Ctrl+S)</value>
+  </data>
+  <data name="ButtonSettings.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ButtonSideBar.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Open Sidebar</value>
+  </data>
+  <data name="ButtonUndo.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Undo (Ctrl+Z)</value>
+  </data>
+  <data name="CloseSideBar" xml:space="preserve">
+    <value>Close sidebar</value>
+  </data>
+  <data name="FontPickerBackground.Text" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="FontPickerColor.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="FontPickerFamily.Text" xml:space="preserve">
+    <value>Font family</value>
+  </data>
+  <data name="FontPickerForeground.Text" xml:space="preserve">
+    <value>Foreground</value>
+  </data>
+  <data name="FontPickerSize.Text" xml:space="preserve">
+    <value>Font Size</value>
+  </data>
+  <data name="MeasureCanvasTip.Text" xml:space="preserve">
+    <value>Drag and drop or paste image to measure.</value>
+  </data>
+  <data name="MeasurePenColor.Text" xml:space="preserve">
+    <value>Pen Color</value>
+  </data>
+  <data name="MeasurePenGlyph.Text" xml:space="preserve">
+    <value>Glyph Size</value>
+  </data>
+  <data name="MeasurePenTab.Text" xml:space="preserve">
+    <value>Pen</value>
+  </data>
+  <data name="MeasurePenWidth.Text" xml:space="preserve">
+    <value>Pen Thickness</value>
+  </data>
+  <data name="MeasureTextTab.Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="MeasureToolAngle.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Angle (Ctrl+3)</value>
+  </data>
+  <data name="MeasureToolColor.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Color (Ctrl+5)</value>
+  </data>
+  <data name="MeasureToolEdge.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Quadrangle (Ctrl+4)</value>
+  </data>
+  <data name="MeasureToolMagnifier.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Magnifier Visible</value>
+  </data>
+  <data name="MeasureToolObjects.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Measures Visible</value>
+  </data>
+  <data name="MeasureToolSegment.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Segment (Ctrl+2)</value>
+  </data>
+  <data name="MeasureToolSelect.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Select (Ctrl+1, Esc)</value>
+  </data>
+  <data name="MenuSaveAll.Text" xml:space="preserve">
+    <value>Save All</value>
+  </data>
+  <data name="MenuSaveLocal.Text" xml:space="preserve">
+    <value>Save Measures Only</value>
+  </data>
+  <data name="MesureCanvasCoord.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Position from image's left-top corner</value>
+  </data>
+  <data name="NavigtionFailedContent" xml:space="preserve">
+    <value>Somehow navigtion failed, please feedback to let us fix it.</value>
+  </data>
+  <data name="NavigtionFailedTitle" xml:space="preserve">
+    <value>Navigtion Failed</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OpenSideBar" xml:space="preserve">
+    <value>Open sidebar</value>
+  </data>
+  <data name="SettingsMagnifierDesc.Text" xml:space="preserve">
+    <value>Change magnifier properties</value>
+  </data>
+  <data name="SettingsMagnifierRadius.Text" xml:space="preserve">
+    <value>Radius</value>
+  </data>
+  <data name="SettingsMagnifierScale.Text" xml:space="preserve">
+    <value>Magnification</value>
+  </data>
+  <data name="SettingsMagnifierTitle.Text" xml:space="preserve">
+    <value>Magnifier</value>
+  </data>
+  <data name="SettingsSaveDesc.Text" xml:space="preserve">
+    <value>Ask me save content when exit application</value>
+  </data>
+  <data name="SettingsSaveSwitch.OffContent" xml:space="preserve">
+    <value>Don't ask</value>
+  </data>
+  <data name="SettingsSaveSwitch.OnContent" xml:space="preserve">
+    <value>Ask</value>
+  </data>
+  <data name="SettingsSaveTitle.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SettingsThemeDark.Content" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="SettingsThemeDesc.Text" xml:space="preserve">
+    <value>Change application theme</value>
+  </data>
+  <data name="SettingsThemeLight.Content" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SettingsThemeSystem.Content" xml:space="preserve">
+    <value>Use system setting</value>
+  </data>
+  <data name="SettingsThemeTitle.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+</root>

@@ -1,0 +1,104 @@
+﻿<UserControl
+    x:Class="MeasurePixels.Controls.FontPicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MeasurePixels.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Spacing="10">
+            <TextBlock x:Uid="FontPickerFamily"/>
+            <ComboBox  Height="28" HorizontalAlignment="Stretch"
+                          ItemsSource="{x:Bind FontsList}"
+                          SelectedItem="{x:Bind TextFontFamily,Mode=TwoWay}"
+                          >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Grid>
+                            <TextBlock Text="{Binding}" FontFamily="{Binding}" 
+                                     TextAlignment="Center" VerticalAlignment="Center" 
+                                           MinHeight="23"/>
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock x:Uid="FontPickerColor"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition MinWidth="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition MinWidth="50"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Uid="FontPickerForeground" FontSize="13" Padding="0,2,8,5"/>
+                <TextBlock x:Uid="FontPickerBackground" FontSize="13" Grid.Column="2" Padding="10,2,8,5"/>
+
+                <Rectangle Grid.Column="1" 
+                           HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"
+                            ToolTipService.ToolTip="{x:Bind TextColor,Mode=OneWay}"
+                           Tapped="FontColor_Tapped">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{x:Bind TextColor,Mode=OneWay}"/>
+                    </Rectangle.Fill>
+                    <Rectangle.ContextFlyout>
+                        <Flyout>
+                            <ColorPicker Color="{x:Bind TextColor,Mode=TwoWay}"
+                                         ColorSpectrumShape="Ring"
+                                         IsMoreButtonVisible="True"
+                                         IsAlphaEnabled="True" 
+                                         IsAlphaSliderVisible="True" 
+                                         IsAlphaTextInputVisible="True"/>
+                        </Flyout>
+                    </Rectangle.ContextFlyout>
+                </Rectangle>
+
+                <Rectangle Grid.Column="3" 
+                           HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"
+                           ToolTipService.ToolTip="{x:Bind TextBackground,Mode=OneWay}"
+                         Tapped="FontColor_Tapped">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{x:Bind TextBackground,Mode=OneWay}"/>
+                    </Rectangle.Fill>
+                    <Rectangle.ContextFlyout>
+                        <Flyout>
+                            <ColorPicker Color="{x:Bind TextBackground,Mode=TwoWay}"
+                                         IsMoreButtonVisible="True"
+                                         IsAlphaEnabled="True" 
+                                         IsAlphaSliderVisible="True" 
+                                         IsAlphaTextInputVisible="True"/>
+                        </Flyout>
+                    </Rectangle.ContextFlyout>
+                </Rectangle>
+            </Grid>
+            <TextBlock x:Uid="FontPickerSize"/>
+            <Slider Value="{x:Bind TextFontSize,Mode=TwoWay}" 
+                    Maximum="{x:Bind MaximumFontSize,Mode=OneWay}" 
+                    Minimum="{x:Bind MinimumFontSize,Mode=OneWay}"/>
+
+            <Grid  Padding="12">
+                <Border Padding="5,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.Background>
+                        <SolidColorBrush Color="{x:Bind TextBackground,Mode=OneWay}"/>
+                    </Border.Background>
+                    <TextBlock Text="123.567°"
+                           FontSize="{x:Bind TextFontSize,Mode=OneWay}"
+                           FontFamily="{x:Bind TextFontFamily,Mode=OneWay}">
+                        <TextBlock.Foreground>
+                            <SolidColorBrush Color="{x:Bind TextColor,Mode=OneWay}"/>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                </Border>
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

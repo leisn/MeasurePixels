@@ -1,0 +1,72 @@
+﻿<UserControl
+    x:Class="MeasurePixels.Measure.MeasureDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MeasurePixels.Measure"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:MeasurePixels.ViewModels"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="200">
+    <UserControl.Resources>
+        <Style x:Key="containerStyle" TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemRevealStyle}">
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="MinWidth" Value="{ThemeResource ListViewItemMinWidth}"/>
+            <Setter Property="MinHeight" Value="30"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="rootGrid" Padding="10,5,10,0"  Margin="0,2,0,0"
+          BorderThickness="1,1,0,0"
+          BorderBrush="{ThemeResource SystemControlBackgroundChromeMediumRevealBorderBrush}"
+          Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Canvas x:Name="detailCanvas" Grid.Row="1"  Margin="0,7"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Width="{x:Bind viewModel.CanvasWidth}" 
+                Height="{x:Bind viewModel.CanvasHeight}">
+            <Polyline Points="{x:Bind viewModel.Points,Mode=OneWay}" 
+                      StrokeThickness="2"
+                      Stroke="{ThemeResource SystemAccentColorDark1}"/>
+        </Canvas>
+        <ListView ItemContainerStyle="{StaticResource containerStyle}"
+            Grid.Row="2" ItemsSource="{x:Bind viewModel.Items}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:PropertyItem">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Bind Key}" FontSize="13" Padding="0,0,0,2"
+                                   VerticalAlignment="Center"/>
+                        <Rectangle Margin="9,2" Width="66" Grid.Column="1" Visibility="{x:Bind IsColorSet}">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{x:Bind HexColor}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <TextBlock Grid.Column="2" Text="{x:Bind Value}" 
+                                    FontSize="13" Padding="0,0,0,2"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ListView>
+
+
+    </Grid>
+</UserControl>
