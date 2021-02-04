@@ -261,6 +261,9 @@
   <data name="OpenSideBar" xml:space="preserve">
     <value>Open sidebar</value>
   </data>
+  <data name="SettingsAboutTitle.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
   <data name="SettingsMagnifierDesc.Text" xml:space="preserve">
     <value>Change magnifier properties</value>
   </data>
@@ -272,6 +275,9 @@
   </data>
   <data name="SettingsMagnifierTitle.Text" xml:space="preserve">
     <value>Magnifier</value>
+  </data>
+  <data name="SettingsReferTitle.Text" xml:space="preserve">
+    <value>Refrence</value>
   </data>
   <data name="SettingsSaveDesc.Text" xml:space="preserve">
     <value>Ask me save content when exit application</value>

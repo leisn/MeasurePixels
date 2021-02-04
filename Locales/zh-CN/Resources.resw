@@ -261,6 +261,9 @@
   <data name="OpenSideBar" xml:space="preserve">
     <value>打开侧边栏</value>
   </data>
+  <data name="SettingsAboutTitle.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
   <data name="SettingsMagnifierDesc.Text" xml:space="preserve">
     <value>修改放大镜属性</value>
   </data>
@@ -272,6 +275,9 @@
   </data>
   <data name="SettingsMagnifierTitle.Text" xml:space="preserve">
     <value>放大镜</value>
+  </data>
+  <data name="SettingsReferTitle.Text" xml:space="preserve">
+    <value>参考</value>
   </data>
   <data name="SettingsSaveDesc.Text" xml:space="preserve">
     <value>关闭应用时询问是否保存内容</value>

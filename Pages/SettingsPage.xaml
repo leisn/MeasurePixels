@@ -6,7 +6,7 @@
     xmlns:hp="using:MeasurePixels.Helpers"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:Width="400" d:Height="600"
+    mc:Ignorable="d" d:Width="400" d:Height="700"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
@@ -70,6 +70,19 @@
                         <TextBlock VerticalAlignment="Center" Text="{x:Bind settings.MagnifierScale,Mode=OneWay}"/>
                     </StackPanel>
                    
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock x:Uid="SettingsAboutTitle" Style="{StaticResource subTitle}"/>
+                    <TextBlock Text="By leisn"  Style="{StaticResource caption}"/>
+                    <HyperlinkButton NavigateUri="https://github.com/leisn/MeasurePixels"
+                                     Content="Github"/>
+                </StackPanel>
+                
+                <StackPanel>
+                    <TextBlock  x:Uid="SettingsReferTitle" Style="{StaticResource subTitle}"/>
+                    <HyperlinkButton Content="WinUI" 
+                                     NavigateUri="https://github.com/microsoft/microsoft-ui-xaml"/>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
