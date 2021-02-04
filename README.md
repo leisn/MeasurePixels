@@ -1,5 +1,5 @@
 # Measure Pixels (UWP)
-Simple image measurement tool in pixels, support for measure segement length, angle, quadrangle edges, and point color.
+Simple image measurement tool in pixels, support for measure segment length, angle, quadrangle edges, and point color.
 
 
 

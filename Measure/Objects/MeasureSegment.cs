@@ -15,7 +15,7 @@ using Windows.UI;
 
 namespace MeasurePixels.Measure.Objects
 {
-    public class MeasureSegement : MeasureObject
+    public class MeasureSegment : MeasureObject
     {
         public float X1 { get; set; } = -1;
         public float X2 { get; set; } = -1;
@@ -95,9 +95,9 @@ namespace MeasurePixels.Measure.Objects
 
             var centerX = X1 + (X2 - X1 - size.Width) / 2;
             var centerY = Y1 + (Y2 - Y1 - size.Height) / 2;
-            var ySegement = size.Height / 2 + Pen.Width / 2 + 5;
-            var offsetX = Math.Sin(radians) * ySegement;
-            var offsetY = Math.Cos(radians) * ySegement;
+            var ySegment = size.Height / 2 + Pen.Width / 2 + 5;
+            var offsetX = Math.Sin(radians) * ySegment;
+            var offsetY = Math.Cos(radians) * ySegment;
 
             offsetX = Math.Abs(offsetX);
             offsetX = radians < 0 ? offsetX : -offsetX;
@@ -170,9 +170,9 @@ namespace MeasurePixels.Measure.Objects
 
             var centerX = X1 + (X2 - X1 - size.Width) / 2;
             var centerY = Y1 + (Y2 - Y1 - size.Height) / 2;
-            var ySegement = size.Height / 2 + Pen.Width / 2 + 5;
-            var offsetX = Math.Sin(radians) * ySegement;
-            var offsetY = Math.Cos(radians) * ySegement;
+            var ySegment = size.Height / 2 + Pen.Width / 2 + 5;
+            var offsetX = Math.Sin(radians) * ySegment;
+            var offsetY = Math.Cos(radians) * ySegment;
 
             offsetX = Math.Abs(offsetX);
             offsetX = radians < 0 ? offsetX : -offsetX;

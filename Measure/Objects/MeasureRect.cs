@@ -245,13 +245,13 @@ namespace MeasurePixels.Measure.Objects
             var bounds = textLayout.LayoutBounds;
             var size = new Size(bounds.Width + 10, bounds.Height);
 
-            var ySegement = size.Height / 2 + Pen.Width / 2 + 5;
+            var ySegment = size.Height / 2 + Pen.Width / 2 + 5;
             var q = (end - start).Quadrant();
             switch (q)
             {
                 case 2:
                 case 3:
-                    ySegement = -ySegement;
+                    ySegment = -ySegment;
                     break;
                 case 1:
                 case 4:
@@ -263,8 +263,8 @@ namespace MeasurePixels.Measure.Objects
 
             var radians = start.RadianX(end);
 
-            var offsetX = Math.Sin(radians) * ySegement;
-            var offsetY = Math.Cos(radians) * ySegement;
+            var offsetX = Math.Sin(radians) * ySegment;
+            var offsetY = Math.Cos(radians) * ySegment;
 
             var left = centerX - offsetX;
             var top = centerY - offsetY;
@@ -346,13 +346,13 @@ namespace MeasurePixels.Measure.Objects
             var bounds = textLayout.LayoutBounds;
             var size = new Size(bounds.Width + 10, bounds.Height);
 
-            var ySegement = size.Height / 2 + Pen.Width / 2 + 5;
+            var ySegment = size.Height / 2 + Pen.Width / 2 + 5;
             var q = (end - start).Quadrant();
             switch (q)
             {
                 case 2:
                 case 3:
-                    ySegement = -ySegement;
+                    ySegment = -ySegment;
                     break;
                 case 1:
                 case 4:
@@ -364,8 +364,8 @@ namespace MeasurePixels.Measure.Objects
 
             var radians = start.RadianX(end);
 
-            var offsetX = Math.Sin(radians) * ySegement;
-            var offsetY = Math.Cos(radians) * ySegement;
+            var offsetX = Math.Sin(radians) * ySegment;
+            var offsetY = Math.Cos(radians) * ySegment;
 
             var left = centerX - offsetX;
             var top = centerY - offsetY;

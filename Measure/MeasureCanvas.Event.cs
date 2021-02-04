@@ -107,7 +107,7 @@ namespace MeasurePixels.Measure
                         Select(point);
                         break;
                     case MeasureTool.Segment:
-                        AddMeasurePoint<MeasureSegement>(x, y, isShiftDown, isCtrlDown);
+                        AddMeasurePoint<MeasureSegment>(x, y, isShiftDown, isCtrlDown);
                         break;
                     case MeasureTool.Angle:
                         AddMeasurePoint<MeasureAngle>(x, y, isShiftDown, isCtrlDown);

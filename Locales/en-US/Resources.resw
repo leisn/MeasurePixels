@@ -121,7 +121,7 @@
     <value>Measure Pixels</value>
   </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>Simple image measurement tool in pixels, support for measure segement length, angle, quadrangle edges, and point color.</value>
+    <value>Simple image measurement tool in pixels, support for measure segment length, angle, quadrangle edges, and point color.</value>
   </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>Measure Pixels</value>

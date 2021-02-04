@@ -239,9 +239,9 @@ namespace MeasurePixels.Measure.Objects
 
             var centerX = X2 + (X3 - X2 - size.Width) / 2;
             var centerY = Y2 + (Y3 - Y2 - size.Height) / 2;
-            var ySegement = size.Height / 2 + Pen.Width / 2 + 5;
-            var offsetX = Math.Sin(radians) * ySegement;
-            var offsetY = Math.Cos(radians) * ySegement;
+            var ySegment = size.Height / 2 + Pen.Width / 2 + 5;
+            var offsetX = Math.Sin(radians) * ySegment;
+            var offsetY = Math.Cos(radians) * ySegment;
 
             offsetX = Math.Abs(offsetX);
             offsetX = radians < 0 ? offsetX : -offsetX;
@@ -347,9 +347,9 @@ namespace MeasurePixels.Measure.Objects
 
             var centerX = X2 + (X3 - X2 - size.Width) / 2;
             var centerY = Y2 + (Y3 - Y2 - size.Height) / 2;
-            var ySegement = size.Height / 2 + Pen.Width / 2 + 5;
-            var offsetX = Math.Sin(radians) * ySegement;
-            var offsetY = Math.Cos(radians) * ySegement;
+            var ySegment = size.Height / 2 + Pen.Width / 2 + 5;
+            var offsetX = Math.Sin(radians) * ySegment;
+            var offsetY = Math.Cos(radians) * ySegment;
 
             offsetX = Math.Abs(offsetX);
             offsetX = radians < 0 ? offsetX : -offsetX;

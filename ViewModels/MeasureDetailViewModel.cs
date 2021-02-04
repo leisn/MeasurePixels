@@ -56,9 +56,9 @@ namespace MeasurePixels.ViewModels
             if (mo == null) return;
             var type = mo.GetType();
             var list = new List<Point>();
-            if (type == typeof(MeasureSegement))
+            if (type == typeof(MeasureSegment))
             {
-                var sege = (MeasureSegement)mo;
+                var sege = (MeasureSegment)mo;
                 Items.Add(new PropertyItem { Key = "|1-2|", Value = sege.Distance.Round3().ToString() });
                 Items.Add(new PropertyItem { Key = "∠ 1", Value = sege.Angle.Round3() + "°" });
                 list.Add(sege.ClipStarts(sege.X1, sege.Y1));

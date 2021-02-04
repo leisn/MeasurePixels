@@ -161,7 +161,7 @@
     <Compile Include="Measure\Objects\MeasureObject.cs" />
     <Compile Include="Measure\Objects\MeasurePen.cs" />
     <Compile Include="Measure\Objects\MeasureRect.cs" />
-    <Compile Include="Measure\Objects\MeasureSegement.cs" />
+    <Compile Include="Measure\Objects\MeasureSegment.cs" />
     <Compile Include="Pages\EditorPage.Capture.cs" />
     <Compile Include="Pages\EditorPage.Screenshot.cs" />
     <Compile Include="Pages\EditorPage.xaml.cs">
