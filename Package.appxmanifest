@@ -9,15 +9,15 @@
   IgnorableNamespaces="uap mp uap6 rescap">
 
   <Identity
-    Name="c49ad6f6-46ba-47c9-ac43-9e8b813874c8"
-    Publisher="CN=leisn, O=None, C=CN"
-    Version="0.0.1.0" />
+    Name="11351leisn.MeasurePixels"
+    Publisher="CN=96E782D8-9A0E-4DD9-8DD8-5BD708C018E4"
+    Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="c49ad6f6-46ba-47c9-ac43-9e8b813874c8" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="7235c94b-d2c5-4c00-bd3f-223660cd1e8f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>MeasurePixels</DisplayName>
-    <PublisherDisplayName>Leisn</PublisherDisplayName>
+    <DisplayName>Measure Pixels</DisplayName>
+    <PublisherDisplayName>leisn</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

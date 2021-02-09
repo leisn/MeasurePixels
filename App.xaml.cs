@@ -30,6 +30,7 @@ namespace MeasurePixels
         /// </summary>
         public App()
         {
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             UnhandledException += OnUnhandledException;
             TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
 
@@ -42,40 +43,28 @@ namespace MeasurePixels
         {
             //UI exception
             e.Handled = true;//Don't shut down app
-#if DEBUG
 
-            ContentDialog dialog = new ContentDialog
+            var dialog = new Controls.ErrorDialog
             {
-                PrimaryButtonText = "OK",
-                Title = "Unhandled Exception",
-                Content = e.Exception.ToString()
+                ErrorException = e.Exception
             };
             await dialog.ShowAsync();
-#else
-            System.Diagnostics.Debug.WriteLine("UnhandledException: " + e.Exception.ToString());
-#endif
         }
 
         private static async void OnUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
             //backgound thead ,task thread
             e.SetObserved();//Don't shut down app
-#if DEBUG
             await
             Window.Current.Dispatcher.TryRunAsync(
                   Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
                   {
-                      var dialog = new ContentDialog
+                      var dialog = new Controls.ErrorDialog
                       {
-                          PrimaryButtonText = "OK",
-                          Title = "Unobserved Task Exception",
-                          Content = e.Exception.ToString()
+                          ErrorException = e.Exception
                       };
                       await dialog.ShowAsync();
                   });
-#else
-             System.Diagnostics.Debug.WriteLine("UnobservedTaskException: " + e.Exception.ToString());
-#endif
         }
 
         /// <summary>

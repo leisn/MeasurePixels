@@ -186,6 +186,15 @@
   <data name="CloseSideBar" xml:space="preserve">
     <value>Close sidebar</value>
   </data>
+  <data name="ErrorDialog.CloseButtonText" xml:space="preserve">
+    <value>Got it</value>
+  </data>
+  <data name="ErrorDialog.Title" xml:space="preserve">
+    <value>Unexpect Error</value>
+  </data>
+  <data name="ErrorDialogContent.Text" xml:space="preserve">
+    <value>Somehow a error occurred, please feed back to let me fix it.</value>
+  </data>
   <data name="FontPickerBackground.Text" xml:space="preserve">
     <value>Background</value>
   </data>
@@ -276,6 +285,12 @@
   <data name="SettingsMagnifierTitle.Text" xml:space="preserve">
     <value>Magnifier</value>
   </data>
+  <data name="SettingsPrivacy.Text" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="SettingsPrivacyPolicy.Content" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
   <data name="SettingsReferTitle.Text" xml:space="preserve">
     <value>Refrence</value>
   </data>
@@ -308,5 +323,8 @@
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="SettingsVersion.Text" xml:space="preserve">
+    <value>Version</value>
   </data>
 </root>

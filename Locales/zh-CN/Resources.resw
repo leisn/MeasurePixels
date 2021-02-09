@@ -186,6 +186,15 @@
   <data name="CloseSideBar" xml:space="preserve">
     <value>关闭侧边栏</value>
   </data>
+  <data name="ErrorDialog.CloseButtonText" xml:space="preserve">
+    <value>好的</value>
+  </data>
+  <data name="ErrorDialog.Title" xml:space="preserve">
+    <value>意外错误</value>
+  </data>
+  <data name="ErrorDialogContent.Text" xml:space="preserve">
+    <value>一个未知的错误，请反馈给我们知道以便修改这个问题。</value>
+  </data>
   <data name="FontPickerBackground.Text" xml:space="preserve">
     <value>背景色</value>
   </data>
@@ -276,6 +285,12 @@
   <data name="SettingsMagnifierTitle.Text" xml:space="preserve">
     <value>放大镜</value>
   </data>
+  <data name="SettingsPrivacy.Text" xml:space="preserve">
+    <value>隐私</value>
+  </data>
+  <data name="SettingsPrivacyPolicy.Content" xml:space="preserve">
+    <value>隐私声明</value>
+  </data>
   <data name="SettingsReferTitle.Text" xml:space="preserve">
     <value>参考</value>
   </data>
@@ -308,5 +323,8 @@
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
     <value>设置</value>
+  </data>
+  <data name="SettingsVersion.Text" xml:space="preserve">
+    <value>版本</value>
   </data>
 </root>

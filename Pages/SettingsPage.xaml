@@ -71,19 +71,34 @@
                     </StackPanel>
                    
                 </StackPanel>
+                <StackPanel>
+                    <TextBlock x:Uid="SettingsAboutTitle" Style="{ThemeResource TitleTextBlockStyle}"/>
+                    <TextBlock Text="@leisn" Style="{StaticResource caption}"/>
+
+                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,0">
+                        <TextBlock  x:Uid="SettingsVersion" Style="{StaticResource subTitle}"/>
+                        <TextBlock Text="1. 0. 0" FontSize="14"  VerticalAlignment="Bottom"/>
+                    </StackPanel>
+                    <HyperlinkButton NavigateUri="https://github.com/leisn/MeasurePixels"
+                                     Content="Github" Padding="0,3,0,0"/>
+                </StackPanel>
 
                 <StackPanel>
-                    <TextBlock x:Uid="SettingsAboutTitle" Style="{StaticResource subTitle}"/>
-                    <TextBlock Text="By leisn"  Style="{StaticResource caption}"/>
-                    <HyperlinkButton NavigateUri="https://github.com/leisn/MeasurePixels"
-                                     Content="Github"/>
+                    <TextBlock x:Uid="SettingsPrivacy" Style="{ThemeResource TitleTextBlockStyle}"/>
+                    <HyperlinkButton x:Uid="SettingsPrivacyPolicy"
+                        NavigateUri="https://github.com/leisn/MeasurePixels/blob/master/PrivacyPolicy"
+                                     FontSize="16"/>
                 </StackPanel>
                 
                 <StackPanel>
-                    <TextBlock  x:Uid="SettingsReferTitle" Style="{StaticResource subTitle}"/>
-                    <HyperlinkButton Content="WinUI" 
+                    <TextBlock  x:Uid="SettingsReferTitle" Style="{ThemeResource TitleTextBlockStyle}"/>
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <HyperlinkButton Content="WinUI" 
                                      NavigateUri="https://github.com/microsoft/microsoft-ui-xaml"/>
-                </StackPanel>
+                        <HyperlinkButton NavigateUri="https://github.com/microsoft/microsoft-ui-xaml/blob/master/LICENSE">MIT License</HyperlinkButton>
+
+                    </StackPanel>
+                    </StackPanel>
             </StackPanel>
         </ScrollViewer>
     </Grid>
