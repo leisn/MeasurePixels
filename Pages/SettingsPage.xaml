@@ -86,7 +86,7 @@
                 <StackPanel>
                     <TextBlock x:Uid="SettingsPrivacy" Style="{ThemeResource TitleTextBlockStyle}"/>
                     <HyperlinkButton x:Uid="SettingsPrivacyPolicy"
-                        NavigateUri="https://github.com/leisn/MeasurePixels/blob/master/PrivacyPolicy"
+                        NavigateUri="https://raw.githubusercontent.com/leisn/MeasurePixels/master/PrivacyPolicy"
                                      FontSize="16"/>
                 </StackPanel>
                 
