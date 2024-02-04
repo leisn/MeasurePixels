@@ -267,11 +267,20 @@
   <data name="Ok" xml:space="preserve">
     <value>OK</value>
   </data>
+  <data name="OpenImageFailed" xml:space="preserve">
+    <value>Open image file failed!</value>
+  </data>
   <data name="OpenSideBar" xml:space="preserve">
     <value>Open sidebar</value>
   </data>
   <data name="SettingsAboutTitle.Text" xml:space="preserve">
     <value>About</value>
+  </data>
+  <data name="SettingsMagnifierCrosshairsSwitch.OffContent" xml:space="preserve">
+    <value>Hide crosshairs</value>
+  </data>
+  <data name="SettingsMagnifierCrosshairsSwitch.OnContent" xml:space="preserve">
+    <value>Show crosshairs</value>
   </data>
   <data name="SettingsMagnifierDesc.Text" xml:space="preserve">
     <value>Change magnifier properties</value>
@@ -290,6 +299,9 @@
   </data>
   <data name="SettingsPrivacyPolicy.Content" xml:space="preserve">
     <value>Privacy Policy</value>
+  </data>
+  <data name="SettingsRateButton.Content" xml:space="preserve">
+    <value>Ratings and reviews</value>
   </data>
   <data name="SettingsReferTitle.Text" xml:space="preserve">
     <value>Refrence</value>

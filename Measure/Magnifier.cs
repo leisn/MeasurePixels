@@ -29,6 +29,7 @@ namespace MeasurePixels.Measure
         public float CenterX { get; set; }
         public float CenterY { get; set; }
         public float Radius { get; set; }
+        public bool ShowCrosshairs { get; set; } = true;
         public float Scale { get; set; } = 4f;
 
         public MagnifierPostion Postion { get; set; } = MagnifierPostion.Outer;
@@ -80,17 +81,19 @@ namespace MeasurePixels.Measure
             }
 
             imageBrush.Transform = Matrix3x2.Multiply(
-              Matrix3x2.CreateScale(Scale),
+                  Matrix3x2.CreateScale(Scale),
                   Matrix3x2.CreateTranslation(startX, startY));
 
             g.FillCircle(CenterX, CenterY, Radius, imageBrush);
 
-            g.DrawLine(CenterX, CenterY - Radius / 3 * 2, CenterX, CenterY + Radius / 3 * 2,
-                Colors.DeepSkyBlue, Scale);
-            g.DrawLine(CenterX - Radius / 3 * 2, CenterY, CenterX + Radius / 3 * 2, CenterY,
-                Colors.DeepSkyBlue, Scale);
-
-            g.DrawCircle(CenterX, CenterY, Radius, Colors.Black, 3);
+            if (ShowCrosshairs)
+            {
+                g.DrawLine(CenterX, CenterY - Radius / 3 * 2, CenterX, CenterY + Radius / 3 * 2,
+                    Colors.DeepSkyBlue, Scale);
+                g.DrawLine(CenterX - Radius / 3 * 2, CenterY, CenterX + Radius / 3 * 2, CenterY,
+                    Colors.DeepSkyBlue, Scale);
+            }
+            g.DrawCircle(CenterX, CenterY, Radius, Colors.Black, Math.Clamp(Scale / 2, 1, Scale));
         }
 
         public void Dispose()

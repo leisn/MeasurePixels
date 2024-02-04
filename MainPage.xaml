@@ -9,67 +9,74 @@
     RequestedTheme="{x:Bind settings.Theme, Mode=OneWay}"
     Loaded="Page_Loaded" ActualThemeChanged="Page_ActualThemeChanged"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Page.Resources>
-        <x:Double x:Key="navWidth">50</x:Double>
-    </Page.Resources>
+  <Page.Resources>
+    <x:Double x:Key="navWidth">50</x:Double>
+  </Page.Resources>
+  <Grid>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="38"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="LeftPaddingColumn" Width="0"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition x:Name="RightPaddingColumn" Width="0"/>
-            </Grid.ColumnDefinitions>
-            <Grid.Resources>
-                <Style TargetType="Button" BasedOn="{StaticResource simpleAppBarButtonStyle}">
-                    <Setter Property="Width" Value="{StaticResource navWidth}"/>
-                    <Setter Property="VerticalAlignment" Value="Stretch"/>
-                </Style>
-                <Style TargetType="FontIcon">
-                    <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}"/>
-                    <Setter Property="FontSize" Value="18"/>
-                    <Setter Property="VerticalAlignment" Value="Center"/>
-                    <Setter Property="HorizontalAlignment" Value="Center"/>
-                </Style>
-            </Grid.Resources>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" MinHeight="38"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+      <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition x:Name="LeftPaddingColumn" Width="0"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition x:Name="RightPaddingColumn" Width="0"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+          <Style TargetType="Button" BasedOn="{StaticResource SimpleAppBarButtonStyle}">
+            <Setter Property="Width" Value="{StaticResource navWidth}"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+          </Style>
+          <Style TargetType="FontIcon">
+            <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+          </Style>
+        </Grid.Resources>
 
-            <Grid x:Name="AppTitleBar" Grid.Column="2" Grid.ColumnSpan="3" 
-                  Background="{ThemeResource SystemControlAcrylicWindowBrush}">
-                <TextBlock x:Uid="AppBarTitle"
-                           Margin="12,8,0,0" HorizontalAlignment="Left" 
-                       Style="{StaticResource CaptionTextBlockStyle}" />
-            </Grid>
+        <Grid x:Name="AppTitleBar" Grid.Column="2" Grid.ColumnSpan="3" Background="{ThemeResource SystemControlAcrylicWindowBrush}">
+          <TextBlock x:Uid="AppBarTitle" Margin="12,8,0,0" HorizontalAlignment="Left" Style="{StaticResource CaptionTextBlockStyle}" />
+        </Grid>
 
-            <StackPanel x:Name="appbarLeftPane" Grid.Column="1" Orientation="Horizontal">
-                <Button Click="GoBack_Click"  x:Uid="ButtonGoBack"
-                        Visibility="{Binding ElementName=contentFrame,Path=CanGoBack}">
-                    <FontIcon  Glyph="&#xE72B;"/>
-                </Button>
-            </StackPanel>
-            <StackPanel  x:Name="appbarRightPane" Grid.Column="3" Orientation="Horizontal">
-                <!--<Button Click="FullScreen_Click"
+        <StackPanel x:Name="appbarLeftPane" Grid.Column="1" Orientation="Horizontal">
+          <Button Click="GoBack_Click"  x:Uid="ButtonGoBack" BorderThickness="0"
+                  Visibility="{Binding ElementName=contentFrame,Path=CanGoBack}">
+            <FontIcon Glyph="&#xE72B;"/>
+          </Button>
+        </StackPanel>
+        <StackPanel x:Name="appbarRightPane" Grid.Column="3" Orientation="Horizontal">
+          <!--<Button Click="FullScreen_Click"
                         ToolTipService.ToolTip="全屏" ToolTipService.Placement="Left">
                     <FontIcon  Glyph="&#xE740;" FontSize="17"/>
                 </Button>-->
-                <Button  Click="Settings_Click" x:Uid="ButtonSettings"
-                         ToolTipService.Placement="Left">
-                    <FontIcon  Glyph="&#xE115;"/>
-                </Button>
-                <Rectangle Margin="12,0,0,0" Width="1" Height="20" VerticalAlignment="Stretch" Fill="#888"/>
-            </StackPanel>
-        </Grid>
-        <Frame Grid.Row="1" x:Name="contentFrame" 
-               NavigationFailed="contentFrame_NavigationFailed">
-            <Frame.ContentTransitions>
-                <TransitionCollection>
-                    <NavigationThemeTransition/>
-                </TransitionCollection>
-            </Frame.ContentTransitions>
-        </Frame>
+          <Button Click="Settings_Click" x:Uid="ButtonSettings"
+                  BorderThickness="0"
+                  ToolTipService.Placement="Left">
+            <FontIcon Glyph="&#xE115;"/>
+          </Button>
+          <Rectangle Margin="12,0,0,0" Width="1" Height="20" VerticalAlignment="Stretch" Fill="#888"/>
+        </StackPanel>
+      </Grid>
+      <Frame Grid.Row="1" x:Name="contentFrame" 
+             NavigationFailed="contentFrame_NavigationFailed">
+        <Frame.ContentTransitions>
+          <TransitionCollection>
+            <NavigationThemeTransition/>
+          </TransitionCollection>
+        </Frame.ContentTransitions>
+      </Frame>
     </Grid>
+
+    <Grid x:Name="ToastMask" Visibility="Collapsed" Background="#225D6B99">
+      <Border Padding="15,5" Background="#5D6B99" CornerRadius="5"
+              Margin="0,100,276,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <TextBlock Text="{x:Bind Message,Mode=OneWay}" Foreground="#FFFFFF" />
+      </Border>
+    </Grid>
+  </Grid>
 </Page>

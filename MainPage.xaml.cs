@@ -20,6 +20,8 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
 using System;
 using Windows.ApplicationModel.Resources;
+using MeasurePixels.Controls;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -45,6 +47,8 @@ namespace MeasurePixels
                     .CloseRequested += MainPage_CloseRequested;
 
             this.UseCustomTitleBar();
+
+            Helpers.Toast.RegisterToastHandle(HandleToast);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -182,5 +186,35 @@ namespace MeasurePixels
 
         #endregion
 
+        public string Message
+        {
+            get { return (string)GetValue(MessageProperty); }
+            set { SetValue(MessageProperty, value); }
+        }
+        public static readonly DependencyProperty MessageProperty =
+            DependencyProperty.Register("Message", typeof(string), typeof(MainPage), new PropertyMetadata(string.Empty));
+
+        private DateTime _startTime;
+        private async void HandleToast(string message, int duration, Action callBack)
+        {
+            _startTime = DateTime.Now;
+            Message = message;
+
+            if (ToastMask.Visibility == Visibility.Visible)
+                return;
+
+            _ = Task.Run(async () =>
+            {
+                while (true)
+                {
+                    if ((DateTime.Now - _startTime).TotalMilliseconds > duration)
+                        break;
+                    System.Threading.Thread.Sleep(100);
+                }
+                await Dispatcher.TryRunIdleAsync((_) => ToastMask.Visibility = Visibility.Collapsed);
+                callBack?.Invoke();
+            });
+            await Dispatcher.TryRunIdleAsync((_) => ToastMask.Visibility = Visibility.Visible);
+        }
     }
 }

@@ -15,6 +15,7 @@ using Windows.Storage;
 using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
 namespace MeasurePixels.Measure
@@ -23,18 +24,30 @@ namespace MeasurePixels.Measure
     {
         #region mouse handler
         readonly Stopwatch watch = new Stopwatch();
-
         private void canvas_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
         {
-            //Debug.WriteLine("canvas_PointerWheelChanged: " + e.Handled);
-            var shift = e.KeyModifiers == VirtualKeyModifiers.Shift;
-            if (shift)//只是处理左右平移
+            //只是处理左右平移
+            if (e.KeyModifiers == VirtualKeyModifiers.Shift)
             {
                 var delta = e.GetCurrentPoint(sender as UIElement).Properties.MouseWheelDelta;
                 delta = delta > 0 ? 1 : -1;
                 scroll.ChangeView(scroll.HorizontalOffset - delta * scroll.ScrollableWidth / 9,
                     scroll.VerticalOffset, scroll.ZoomFactor);
                 e.Handled = true;
+                return;
+            }
+            //缩放
+            if (e.KeyModifiers == VirtualKeyModifiers.Control)
+            {
+                var pointer = e.GetCurrentPoint(sender as UIElement);
+                bool zoomIn = pointer.Properties.MouseWheelDelta > 0;
+                var scale = (float)Math.Clamp(_scale + (zoomIn ? 0.05 : -0.05), 0.1, 4);
+                //if (scale != _scale)
+                //{
+                //    _scalePoint = pointer.Position;
+                //    _scale = scale;
+                //    canvas.Invalidate();
+                //}
             }
         }
 
@@ -283,6 +296,7 @@ namespace MeasurePixels.Measure
         {
             try
             {
+                SelectedItem = null;
                 for (int i = measureObjects.Count - 1; i >= 0; i--)
                     measureObjects[i].Dispose();
                 measureObjects.Clear();

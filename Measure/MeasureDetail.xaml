@@ -38,10 +38,11 @@
                       Stroke="{ThemeResource SystemAccentColorDark1}"/>
         </Canvas>
         <ListView ItemContainerStyle="{StaticResource containerStyle}"
-            Grid.Row="2" ItemsSource="{x:Bind viewModel.Items}">
+            Grid.Row="2" ItemsSource="{x:Bind viewModel.Items}" 
+            ItemClick="PropertyItemClick" IsItemClickEnabled="True">
             <ItemsControl.ItemTemplate>
                 <DataTemplate x:DataType="vm:PropertyItem">
-                    <Grid>
+                    <Grid ToolTipService.ToolTip="{Binding ToolTip}" ToolTipService.Placement="Top">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"/>
                             <ColumnDefinition Width="Auto"/>

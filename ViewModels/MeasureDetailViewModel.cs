@@ -20,6 +20,7 @@ namespace MeasurePixels.ViewModels
     {
         public string Key { get; set; }
         public string Value { get; set; }
+        public string ToolTip { get; set; }
         public Color HexColor { get; set; } = Colors.Transparent;
         public bool IsColorSet { get; set; }
     }
@@ -141,11 +142,12 @@ namespace MeasurePixels.ViewModels
                 textBlock.SetValue(Canvas.TopProperty, ct);
                 Items.Add(new PropertyItem
                 {
-                    Key =  (i + 1).ToString(),
+                    Key = (i + 1).ToString(),
                     Value = c.ToHex(),
+                    ToolTip = $"rbg ({c.R}, {c.G}, {c.B})",
                     HexColor = c,
                     IsColorSet = true
-                }); ;
+                });
             }
         }
 

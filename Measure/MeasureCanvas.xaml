@@ -10,31 +10,38 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <UserControl.Resources>
-        <hp:BoolVisibleReverseConverter x:Key="reverseVisiable"/>
-    </UserControl.Resources>
-    <Grid>
-        <Grid.Transitions>
-            <TransitionCollection>
-                <AddDeleteThemeTransition/>
-                <EntranceThemeTransition IsStaggeringEnabled="False"/>
-            </TransitionCollection>
-        </Grid.Transitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="auto" MinHeight="24"/>
-        </Grid.RowDefinitions>
+  <UserControl.Resources>
+    <hp:BoolVisibleReverseConverter x:Key="reverseVisiable"/>
+  </UserControl.Resources>
+  <Grid>
+    <Grid.Transitions>
+      <TransitionCollection>
+        <AddDeleteThemeTransition/>
+        <EntranceThemeTransition IsStaggeringEnabled="False"/>
+      </TransitionCollection>
+    </Grid.Transitions>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition Height="auto" MinHeight="24"/>
+    </Grid.RowDefinitions>
 
-        <ScrollViewer x:Name="scroll" Background="{ThemeResource SystemAccentColor}"
+    <ScrollViewer x:Name="scroll" Background="{ThemeResource SystemAccentColor}"
                 HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto"
                 VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
-            <Grid Background="{ThemeResource MeasureCanvasBackgound}"
+      <Grid Background="{ThemeResource MeasureCanvasBackgound}"
                   AllowDrop="True" DragOver="Grid_DragOver" Drop="Grid_Drop">
-                <TextBlock Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="24"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"
-                           Visibility="{x:Bind CanMeasure,Mode=OneWay,Converter={StaticResource reverseVisiable}}"
-                           x:Uid="MeasureCanvasTip"/>
-                <win2d:CanvasControl  x:Name="canvas" Draw="canvas_Draw" 
+        <StackPanel Orientation="Vertical"  HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Visibility="{x:Bind CanMeasure,Mode=OneWay,Converter={StaticResource reverseVisiable}}">
+          <Button HorizontalAlignment="Center" Padding="5" Background="Transparent" BorderThickness="0"
+                  Click="OpenFile_Click">
+            <Viewbox Height="33">
+              <SymbolIcon Symbol="Folder" />
+            </Viewbox>
+          </Button>
+          <TextBlock Margin="0,3,0,0" Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="24" x:Uid="MeasureCanvasTip"/>
+        </StackPanel>
+       
+        <win2d:CanvasControl  x:Name="canvas" Draw="canvas_Draw" 
                                       Background="{ThemeResource SystemAccentColorDark1}"
                                       ClearColor="#1f1f1f" 
                                       DpiScale="{x:Bind DpiScale}"
@@ -49,39 +56,40 @@
                                       PreviewKeyDown="canvas_KeyDown" PointerWheelChanged="canvas_PointerWheelChanged"
                                      />
 
-            </Grid>
-        </ScrollViewer>
+      </Grid>
+    </ScrollViewer>
 
-        <Grid Grid.Row="1" Padding="12,0" 
+    <Grid Grid.Row="1" Padding="12,0" 
               Background="{ThemeResource SystemAccentColor}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition />
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto"/>
+        <ColumnDefinition />
+        <ColumnDefinition Width="auto"/>
+      </Grid.ColumnDefinitions>
 
-            <Grid.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="FontSize" Value="13"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="VerticalAlignment" Value="Center"/>
-                    <Setter Property="Padding" Value="0,0,0,2"/>
-                </Style>
-            </Grid.Resources>
+      <Grid.Resources>
+        <Style TargetType="TextBlock">
+          <Setter Property="FontSize" Value="13"/>
+          <Setter Property="Foreground" Value="White"/>
+          <Setter Property="VerticalAlignment" Value="Center"/>
+          <Setter Property="Padding" Value="0,0,0,2"/>
+        </Style>
+      </Grid.Resources>
 
-            <StackPanel Orientation="Horizontal" Spacing="5">
-                <TextBlock x:Name="coordText" 
-                           x:Uid="MesureCanvasCoord"
-                           MinWidth="60"/>
-            </StackPanel>
+      <StackPanel Orientation="Horizontal" Spacing="5">
+        <TextBlock x:Name="coordText" x:Uid="MesureCanvasCoord" MinWidth="60"/>
+        <Rectangle Margin="5,0" Width="1" Height="20" VerticalAlignment="Stretch" Fill="#888"/>
+        <TextBlock x:Name="colorText"/>
+      </StackPanel>
 
-            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="5">
-                <TextBlock Text="Dpi :"/>
-                <TextBlock Text="{Binding ElementName=canvas,Path=Dpi}"/>
-                <TextBlock Text="Scale :" Margin="12,0,0,0"
+      <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="5">
+        <Rectangle Margin="5,0" Width="1" Height="20" VerticalAlignment="Stretch" Fill="#888"/>
+        <TextBlock Text="Dpi :"/>
+        <TextBlock Text="{Binding ElementName=canvas,Path=Dpi}"/>
+        <TextBlock Text="Scale :" Margin="5,0,0,0"
                                ToolTipService.ToolTip="Dpi Scale" ToolTipService.Placement="Bottom"/>
-                <TextBlock Text="{Binding ElementName=canvas,Path=DpiScale}"/>
-            </StackPanel>
-        </Grid>
+        <TextBlock Text="{Binding ElementName=canvas,Path=DpiScale}"/>
+      </StackPanel>
     </Grid>
+  </Grid>
 </UserControl>

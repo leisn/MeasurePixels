@@ -19,7 +19,7 @@ namespace MeasurePixels.Measure
         public ICanvasResourceCreator Creator => this.canvas;
         public CanvasDevice Device => this.canvas.Device;
         public CanvasBitmap SourceBitmap => this.measureBitmap;
-        public Color SelectedBorderColor => (Color)App.Current.Resources["SystemAccentColor"];
+        public Color SelectedBorderColor => (Color)App.Current.Resources["SystemAccentColorDark1"];
         public float SelectedBorderWidth => 1.0f;
 
         public readonly Dictionary<MeasureTool, MeasurePen>
@@ -97,15 +97,15 @@ namespace MeasurePixels.Measure
                 typeof(MeasureCanvas),
                 new PropertyMetadata(false));
 
-        public bool IsOjbectsVisible
+        public bool? IsOjbectsVisible
         {
-            get { return (bool)GetValue(IsOjbectsVisibleProperty); }
+            get { return (bool?)GetValue(IsOjbectsVisibleProperty); }
             set { SetValue(IsOjbectsVisibleProperty, value); }
         }
         public static readonly DependencyProperty IsOjbectsVisibleProperty =
             DependencyProperty.Register(
                 nameof(IsOjbectsVisible),
-                typeof(bool),
+                typeof(bool?),
                 typeof(MeasureCanvas),
                 new PropertyMetadata(true, CanvasPropertyChanged));
 

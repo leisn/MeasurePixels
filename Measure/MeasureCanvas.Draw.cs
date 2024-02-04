@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
 
 using MeasurePixels.Measure.Objects;
 
@@ -9,19 +12,20 @@ using Microsoft.Graphics.Canvas.UI.Xaml;
 using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace MeasurePixels.Measure
 {
     public partial class MeasureCanvas
     {
         readonly List<MeasureObject> measureObjects = new List<MeasureObject>();
+        CanvasBitmap orginBitmap;
         CanvasBitmap measureBitmap;
         MeasureObject temp;
         Magnifier magnifier;
         AppSettings settings => AppSettings.Current;
         public int StartX { get; } = 60;
         public int StartY { get; } = 50;
-
 
         private CanvasBitmap CreateEmptyBitmap(int width, int height, CanvasControl canvasControl = null)
         {
@@ -36,21 +40,22 @@ namespace MeasurePixels.Measure
 
         private void Settings_ThemeChanged()
         {
-            this.initCavansClearColor();
-            if (measureBitmap == null) return;
-            var size = measureBitmap.SizeInPixels;
-            var bitmap = CreateEmptyBitmap((int)size.Width, (int)size.Height);
-            bitmap.CopyPixelsFromBitmap(measureBitmap, StartX, StartY,
-                StartX, StartY, (int)size.Width - StartX * 2, (int)size.Height - StartY * 2);
-            measureBitmap = bitmap;
+            this.InitCanvasClearColor();
+            if (orginBitmap == null) return;
+            var contentSize = orginBitmap.SizeInPixels;
+            var width = (int)contentSize.Width + StartX * 2;
+            var height = (int)contentSize.Height + StartY * 2;
+            measureBitmap = CreateEmptyBitmap(width, height);
+            measureBitmap.CopyPixelsFromBitmap(orginBitmap, StartX, StartY);
             magnifier.Source = measureBitmap;
-            //this.canvas.Invalidate();
+            this.canvas.Invalidate();
         }
 
         public void Update(CanvasBitmap bitmap, bool redraw = true)
         {
             Clear();
-
+            orginBitmap?.Dispose();
+            orginBitmap = bitmap;
             if (bitmap == null)
             {
                 this.measureBitmap.Dispose();
@@ -60,11 +65,11 @@ namespace MeasurePixels.Measure
                 return;
             }
 
-            var contentSize = bitmap.SizeInPixels;
+            var contentSize = orginBitmap.SizeInPixels;
             var width = (int)contentSize.Width + StartX * 2;
             var height = (int)contentSize.Height + StartY * 2;
             measureBitmap = CreateEmptyBitmap(width, height);
-            measureBitmap.CopyPixelsFromBitmap(bitmap, StartX, StartY);
+            measureBitmap.CopyPixelsFromBitmap(orginBitmap, StartX, StartY);
 
             this.canvas.Width = width;
             this.canvas.Height = height;
@@ -72,11 +77,9 @@ namespace MeasurePixels.Measure
             magnifier = magnifier ?? new Magnifier(this.canvas);
             magnifier.Source = measureBitmap;
 
-            if (redraw)
-                this.canvas.Invalidate();
+            if (redraw) this.canvas.Invalidate();
             CanMeasure = true;
         }
-
 
         private void UpdateMagnifier(Point center)
         {
@@ -86,19 +89,36 @@ namespace MeasurePixels.Measure
                 magnifier.CenterY = (float)center.Y;
             }
 
-            this.coordText.Text = (center.X - StartX).ToString("0") + ", " + (center.Y - StartY).ToString("0");
+            var x = (int)(center.X - StartX);
+            var y = (int)(center.Y - StartY);
+            this.coordText.Text = $"{x}, {y}";
+            x = (int)Math.Ceiling(center.X);
+            y = (int)Math.Ceiling(center.Y);
+            if (measureBitmap != null && x >= 0 && x < measureBitmap.Bounds.Width && y >= 0 && y < measureBitmap.Bounds.Height)
+            {
+                var color = measureBitmap?.GetPixelColors(x, y, 1, 1)?.FirstOrDefault();
+                if (color.HasValue)
+                {
+                    this.colorText.Text = $"Rgb({color.Value.R}, {color.Value.G}, {color.Value.B})";
+                    //  this.colorText.Text = color.Value.ToHex();
+                }
+            }
         }
 
+        float _scale = 1;
         private void canvas_Draw(CanvasControl sender, CanvasDrawEventArgs args)
         {
             if (measureBitmap == null)
                 return;
             var session = args.DrawingSession;
-            session.DrawImage(measureBitmap);
+            if (IsOjbectsVisible != null)
+                session.DrawImage(measureBitmap);
+            else
+                session.DrawRectangle(measureBitmap.Bounds, Colors.Transparent);
             session.Antialiasing = CanvasAntialiasing.Antialiased;
             session.TextAntialiasing = CanvasTextAntialiasing.Auto;
 
-            if (IsOjbectsVisible)
+            if (IsOjbectsVisible != false)
                 for (int i = 0; i < undoIndex + 1; i++)
                     measureObjects[i].Draw(session);
 
@@ -106,6 +126,7 @@ namespace MeasurePixels.Measure
             {
                 magnifier.Scale = settings.MagnifierScale;
                 magnifier.Radius = settings.MagnifierRadius;
+                magnifier.ShowCrosshairs = settings.MagnifierShowCrosshairs;
                 magnifier.Draw(session, new Size(sender.Width, sender.Height));
             }
 

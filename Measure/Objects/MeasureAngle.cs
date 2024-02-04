@@ -165,102 +165,103 @@ namespace MeasurePixels.Measure.Objects
             }
         }
 
-        [Obsolete]
-        public void DrawCommon(CanvasDrawingSession g)
-        {
-            //save tansform
-            var save = g.Transform;
 
-            g.FillRectangle(new Rect(X2 - 2, Y2 - 2, 4, 4), Pen.Color);
+        /**[Obsolete]
+       public void DrawCommon(CanvasDrawingSession g)
+       {
+           //save tansform
+           var save = g.Transform;
 
-            using (var pathBuilder = new CanvasPathBuilder(g))
-            {
-                pathBuilder.BeginFigure(X1, Y1);
-                pathBuilder.AddLine(X2, Y2);
-                pathBuilder.AddLine(X3, Y3);
-                pathBuilder.EndFigure(CanvasFigureLoop.Open);
-                g.DrawGeometry(CanvasGeometry.CreatePath(pathBuilder), Pen.Color, Pen.Width);
-            }
+           g.FillRectangle(new Rect(X2 - 2, Y2 - 2, 4, 4), Pen.Color);
 
-            #region glyph
-            if (IsGlyphVisible)
-            {
-                var r = (float)Math.Abs(Math.Atan((Y3 - Y2) / (X3 - X2)));
-                var s = (float)Radians123;
-                var gw = (float)Math.Cos(r) * Pen.GlyphSize;
-                var gh = (float)Math.Sin(r) * Pen.GlyphSize;
+           using (var pathBuilder = new CanvasPathBuilder(g))
+           {
+               pathBuilder.BeginFigure(X1, Y1);
+               pathBuilder.AddLine(X2, Y2);
+               pathBuilder.AddLine(X3, Y3);
+               pathBuilder.EndFigure(CanvasFigureLoop.Open);
+               g.DrawGeometry(CanvasGeometry.CreatePath(pathBuilder), Pen.Color, Pen.Width);
+           }
 
-                switch (P3Quadrant)
-                {
-                    case 1:
-                        r = -r;
-                        gh = -gh;
-                        break;
-                    case 2:
-                        gh = -gh;
-                        r -= (float)Math.PI;
-                        break;
-                    case 3:
-                        r = (float)Math.PI - r;
-                        break;
-                    case 4:
-                        break;
-                }
-                switch (P3Quadrant)
-                {
-                    case 2:
-                    case 3:
-                        gw = -gw;
-                        if (!isP1Upper)
-                            s = -s;
-                        break;
-                    case 1:
-                    case 4:
-                        if (isP1Upper)
-                            s = -s;
-                        break;
-                }
+           #region glyph
+           if (IsGlyphVisible)
+           {
+               var r = (float)Math.Abs(Math.Atan((Y3 - Y2) / (X3 - X2)));
+               var s = (float)Radians123;
+               var gw = (float)Math.Cos(r) * Pen.GlyphSize;
+               var gh = (float)Math.Sin(r) * Pen.GlyphSize;
 
-                using (var pathBuilder = new CanvasPathBuilder(g))
-                {
-                    pathBuilder.BeginFigure(gw + X2, gh + Y2);
-                    pathBuilder.AddArc(new Vector2(X2, Y2), Pen.GlyphSize, Pen.GlyphSize, r, s);
-                    pathBuilder.EndFigure(CanvasFigureLoop.Open);
-                    g.DrawGeometry(CanvasGeometry.CreatePath(pathBuilder), Pen.Color, Pen.Width);
-                }
-            }
-            #endregion
+               switch (P3Quadrant)
+               {
+                   case 1:
+                       r = -r;
+                       gh = -gh;
+                       break;
+                   case 2:
+                       gh = -gh;
+                       r -= (float)Math.PI;
+                       break;
+                   case 3:
+                       r = (float)Math.PI - r;
+                       break;
+                   case 4:
+                       break;
+               }
+               switch (P3Quadrant)
+               {
+                   case 2:
+                   case 3:
+                       gw = -gw;
+                       if (!isP1Upper)
+                           s = -s;
+                       break;
+                   case 1:
+                   case 4:
+                       if (isP1Upper)
+                           s = -s;
+                       break;
+               }
 
-            //TODO 调整文字显示位置，得到更好的视图
-            var radians = -(float)Math.Atan((Y2 - Y3) / (X3 - X2));
-            var textLayout = CreateTextLayout(Angle.Round3().ToString() + "°", g);
-            var bounds = textLayout.LayoutBounds;
-            var size = new Size(bounds.Width + 10, bounds.Height);
+               using (var pathBuilder = new CanvasPathBuilder(g))
+               {
+                   pathBuilder.BeginFigure(gw + X2, gh + Y2);
+                   pathBuilder.AddArc(new Vector2(X2, Y2), Pen.GlyphSize, Pen.GlyphSize, r, s);
+                   pathBuilder.EndFigure(CanvasFigureLoop.Open);
+                   g.DrawGeometry(CanvasGeometry.CreatePath(pathBuilder), Pen.Color, Pen.Width);
+               }
+           }
+           #endregion
 
-            var centerX = X2 + (X3 - X2 - size.Width) / 2;
-            var centerY = Y2 + (Y3 - Y2 - size.Height) / 2;
-            var ySegment = size.Height / 2 + Pen.Width / 2 + 5;
-            var offsetX = Math.Sin(radians) * ySegment;
-            var offsetY = Math.Cos(radians) * ySegment;
+           //TODO 调整文字显示位置，得到更好的视图
+           var radians = -(float)Math.Atan((Y2 - Y3) / (X3 - X2));
+           var textLayout = CreateTextLayout(Angle.Round3().ToString() + "°", g);
+           var bounds = textLayout.LayoutBounds;
+           var size = new Size(bounds.Width + 10, bounds.Height);
 
-            offsetX = Math.Abs(offsetX);
-            offsetX = radians < 0 ? offsetX : -offsetX;
+           var centerX = X2 + (X3 - X2 - size.Width) / 2;
+           var centerY = Y2 + (Y3 - Y2 - size.Height) / 2;
+           var ySegment = size.Height / 2 + Pen.Width / 2 + 5;
+           var offsetX = Math.Sin(radians) * ySegment;
+           var offsetY = Math.Cos(radians) * ySegment;
 
-            var left = centerX - offsetX;
-            var top = centerY - offsetY;
-            centerX = left + size.Width / 2;
-            centerY = top + size.Height / 2;
+           offsetX = Math.Abs(offsetX);
+           offsetX = radians < 0 ? offsetX : -offsetX;
 
-            g.Transform = Matrix3x2.CreateRotation(radians, new Vector2((float)centerX, (float)centerY));
+           var left = centerX - offsetX;
+           var top = centerY - offsetY;
+           centerX = left + size.Width / 2;
+           centerY = top + size.Height / 2;
 
-            var rect = new Rect(left, top, size.Width, size.Height);
-            g.FillRectangle(rect, Pen.TextBackground);
+           g.Transform = Matrix3x2.CreateRotation(radians, new Vector2((float)centerX, (float)centerY));
 
-            g.DrawTextLayout(textLayout, (float)left + 5, (float)top, Pen.TextColor);
+           var rect = new Rect(left, top, size.Width, size.Height);
+           g.FillRectangle(rect, Pen.TextBackground);
 
-            //recover transform
-            g.Transform = save;
-        }
+           g.DrawTextLayout(textLayout, (float)left + 5, (float)top, Pen.TextColor);
+
+           //recover transform
+           g.Transform = save;
+       }*/
 
         protected override void UpdateGeometries()
         {
@@ -277,9 +278,9 @@ namespace MeasurePixels.Measure.Objects
                 AddGeometry(new GeometryConfig
                 {
                     Geometry = geo,
-                    Style=GeometryStyle.Stroke,
-                    StrokeColor=Pen.Color,
-                    StrokeWidth=Pen.Width
+                    Style = GeometryStyle.Stroke,
+                    StrokeColor = Pen.Color,
+                    StrokeWidth = Pen.Width
                 });
             }
 
@@ -341,7 +342,7 @@ namespace MeasurePixels.Measure.Objects
 
             #region Text
             var radians = -(float)Math.Atan((Y2 - Y3) / (X3 - X2));
-            var textLayout = CreateTextLayout(Angle.Round3().ToString() + "°",Context.Creator);
+            var textLayout = CreateTextLayout(Angle.Round3().ToString() + "°", Context.Creator);
             var bounds = textLayout.LayoutBounds;
             var size = new Size(bounds.Width + 10, bounds.Height);
 

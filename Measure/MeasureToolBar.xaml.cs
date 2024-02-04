@@ -81,16 +81,14 @@ namespace MeasurePixels.Measure
                 TargetCanvas.Pens[tool] = pen;
         }
 
-        private void ItemRightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void MesureToolRightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            var button = sender as RadioButton;
-            if (button != null)
-            {
-                if (button.IsChecked != true)
-                    button.IsChecked = true;
-                ShowFlyout(button);
-            }
+            if (!(sender is RadioButton button))
+                return;
+            button.IsChecked = true;
+            ShowFlyout(button);
         }
+
         private void ShowFlyout(RadioButton button)
         {
             var tag = button.Tag;
@@ -100,5 +98,23 @@ namespace MeasurePixels.Measure
             SharedFlyout.ShowAt(button, showOptions);
         }
 
+        private void MesureToolUnchecked(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is RadioButton button))
+                return;
+            button.CommandParameter = null;
+        }
+
+        private void MeasureToolTapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (!(sender is RadioButton button))
+                return;
+            if (button.IsChecked != true)
+                return;
+            if (button.CommandParameter == null)
+                button.CommandParameter = "what ever";
+            else
+                ShowFlyout(button);
+        }
     }
 }

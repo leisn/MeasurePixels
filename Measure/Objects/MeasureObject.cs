@@ -38,6 +38,11 @@ namespace MeasurePixels.Measure.Objects
 
     public abstract class MeasureObject : IDisposable
     {
+        private static CanvasStrokeStyle selectedBorderStyle = new CanvasStrokeStyle
+        {
+            DashStyle = CanvasDashStyle.Dash,
+        };
+
         readonly List<GeometryConfig> Geometries = new List<GeometryConfig>();
 
         public MeasurePen Pen { get; set; } = MeasurePen.Default;
@@ -50,6 +55,7 @@ namespace MeasurePixels.Measure.Objects
 
         private bool graphicsCompleted = false;
         protected bool IsGlyphVisible => Pen.GlyphSize > 0;
+
         public MeasureObject() { }
 
         public virtual bool CanUndo => false;
@@ -96,8 +102,8 @@ namespace MeasurePixels.Measure.Objects
                 using (var group = CanvasGeometry.CreateGroup(g, groups))
                 {
                     var bounds = group.ComputeBounds();
-                    g.FillRectangle(bounds, Color.FromArgb(0x22, 0, 0, 0));
-                    g.DrawRectangle(bounds, Context.SelectedBorderColor, Context.SelectedBorderWidth);
+                    g.FillRectangle(bounds, Color.FromArgb(0x22, 0x3B, 0x4F, 0x81));
+                    g.DrawRectangle(bounds, Context.SelectedBorderColor, Context.SelectedBorderWidth, selectedBorderStyle);
                 }
             }
 

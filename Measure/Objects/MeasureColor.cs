@@ -76,7 +76,7 @@ namespace MeasurePixels.Measure.Objects
             }
         }
 
-        [Obsolete]
+        /**[Obsolete]
         public void DrawCommon(CanvasDrawingSession g)
         {
             //save tansform
@@ -116,7 +116,7 @@ namespace MeasurePixels.Measure.Objects
 
             //recover transform
             g.Transform = save;
-        }
+        }*/
 
         protected override void UpdateGeometries()
         {

@@ -21,6 +21,7 @@ namespace MeasurePixels
         const string Settings_AskSaveOnClose = "save_on_close";
         const string Settings_Magnifier_Radius = "magnifier_radius";
         const string Settings_Magnifier_Scale = "magnifier_scale";
+        const string Settings_Magnifier_Crosshairs = "magnifier_Crosshairs";
         static AppSettings()
         {
             var localSettings = ApplicationData.Current.LocalSettings.Values;
@@ -32,6 +33,8 @@ namespace MeasurePixels
                 Current._MagnifierRadius = (int)mSize;
             if (localSettings.TryGetValue(Settings_Magnifier_Scale, out var mScale))
                 Current._MagnifierScale = (int)mScale;
+            if (localSettings.TryGetValue(Settings_Magnifier_Crosshairs, out var mCross))
+                Current._MagnifierShowCrosshairs = (bool)mCross;
         }
 
         public void SaveSettings()
@@ -41,6 +44,7 @@ namespace MeasurePixels
             localSettings.Values[Settings_AskSaveOnClose] = AskSaveOnClose;
             localSettings.Values[Settings_Magnifier_Radius] = MagnifierRadius;
             localSettings.Values[Settings_Magnifier_Scale] = MagnifierScale;
+            localSettings.Values[Settings_Magnifier_Crosshairs] = MagnifierShowCrosshairs;
         }
 
         public event Action ThemeChanged;
@@ -96,6 +100,19 @@ namespace MeasurePixels
                 SetProperty(ref _MagnifierScale, value, onChanged: () =>
                 {
                     ApplicationData.Current.LocalSettings.Values[Settings_Magnifier_Scale] = value;
+                });
+            }
+        }
+
+        private bool _MagnifierShowCrosshairs = true;
+        public bool MagnifierShowCrosshairs
+        {
+            get => _MagnifierShowCrosshairs;
+            set
+            {
+                SetProperty(ref _MagnifierShowCrosshairs, value, onChanged: () =>
+                {
+                    ApplicationData.Current.LocalSettings.Values[Settings_Magnifier_Crosshairs] = value;
                 });
             }
         }

@@ -50,5 +50,29 @@ namespace MeasurePixels.Measure
                 viewModel.UpdateValues(obj);
         }
 
+        private async void PropertyItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                var item = (PropertyItem)e.ClickedItem;
+                DataPackage dataPackage = new DataPackage
+                {
+                    RequestedOperation = DataPackageOperation.Copy
+                };
+                dataPackage.SetText(item.Value);
+                Clipboard.SetContent(dataPackage);
+                await Helpers.Toast.ShowAsync("已复制");
+            }
+            catch (Exception ex)
+            {
+                var dialog = new ContentDialog
+                {
+                    Title = ex.GetType(),
+                    Content = ex.Message,
+                    PrimaryButtonText = "OK"
+                };
+                await dialog.ShowAsync();
+            }
+        }
     }
 }

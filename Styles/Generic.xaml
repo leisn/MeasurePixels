@@ -6,4 +6,5 @@
         <ResourceDictionary Source="RadioStyles.xaml" />
         <ResourceDictionary Source="ButtonStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
+    <x:Double x:Key="MeasureDetailPaneWidth">256</x:Double>
 </ResourceDictionary>

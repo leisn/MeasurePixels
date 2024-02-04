@@ -5,7 +5,6 @@
     xmlns:local="using:MeasurePixels.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:win2d="using:Microsoft.Graphics.Canvas.UI.Xaml"
     Loaded="Page_Loaded" Unloaded="Page_Unloaded"
     xmlns:mse="using:MeasurePixels.Measure"
     mc:Ignorable="d" NavigationCacheMode="Enabled"
@@ -16,10 +15,20 @@
         <hp:CanvasSizeConverter x:Key="sizeConverter"/>
         <hp:NullBoolConverter x:Key="selectedConvrter"/>
 
-        <Style x:Name="appButton" TargetType="AppBarButton"
+        <!--<Style TargetType="AppBarButton"
                BasedOn="{StaticResource AppBarButtonRevealStyle}">
             <Setter Property="Width" Value="Auto"/>
             <Setter Property="MinWidth" Value="40"/>
+        </Style>-->
+        <Style TargetType="AppBarButton" BasedOn="{StaticResource AppBarButtonBaseStyle}">
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="MinWidth" Value="40"/>
+            <Setter Property="IsCompact" Value="True"/>
+        </Style>
+        <Style TargetType="AppBarToggleButton" >
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="MinWidth" Value="40"/>
+            <Setter Property="IsCompact" Value="True"/>
         </Style>
     </Page.Resources>
 
@@ -38,24 +47,21 @@
 
             <CommandBar Background="Transparent" VerticalAlignment="Stretch"
                         DefaultLabelPosition="Collapsed"
-                            OverflowButtonVisibility="Collapsed">
-                <AppBarButton  x:Uid="ButtonClear" Icon="Clear" Click="ClearButton_Click"
-                                  Style="{StaticResource appButton}"/>
+                        OverflowButtonVisibility="Collapsed">
+                <AppBarButton  x:Uid="ButtonClear" Icon="Clear" Click="ClearButton_Click"/>
                 <AppBarButton x:Uid="ButtonUndo" Icon="Undo" Click="UndoButton_Click"
-                                  IsEnabled="{Binding ElementName=measureCanvas,Path=CanUndo,Mode=OneWay}"
-                                  Style="{StaticResource appButton}">
+                                  IsEnabled="{Binding ElementName=measureCanvas,Path=CanUndo,Mode=OneWay}">
                     <AppBarButton.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="Z"/>
                     </AppBarButton.KeyboardAccelerators>
                 </AppBarButton>
                 <AppBarButton x:Uid="ButtonRedo" Icon="Redo" Click="RedoButton_Click"
-                                  IsEnabled="{Binding ElementName=measureCanvas,Path=CanRedo,Mode=OneWay}"
-                                  Style="{StaticResource appButton}">
+                                  IsEnabled="{Binding ElementName=measureCanvas,Path=CanRedo,Mode=OneWay}">
                     <AppBarButton.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="Y"/>
                     </AppBarButton.KeyboardAccelerators>
                 </AppBarButton>
-                <AppBarButton  x:Uid="ButtonDelete" Icon="Delete" Style="{StaticResource appButton}" Click="DeleteButton_Click"
+                <AppBarButton  x:Uid="ButtonDelete" Icon="Delete" Click="DeleteButton_Click"
                               IsEnabled="{Binding ElementName=measureCanvas,Path=SelectedItem,Mode=OneWay,
                                           Converter={StaticResource selectedConvrter}}">
                     <AppBarButton.KeyboardAccelerators>
@@ -66,7 +72,12 @@
             </CommandBar>
 
             <CommandBar DefaultLabelPosition="Right" Grid.Column="2" Background="Transparent"
-                            OverflowButtonVisibility="Collapsed">
+                        OverflowButtonVisibility="Collapsed">
+                <!--<AppBarButton x:Uid="ButtonFitView" LabelPosition="Collapsed">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE9A6;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>-->
                 <AppBarButton  x:Uid="ButtonPaste" Icon="Paste"  Click="Clipboard_Click"
                                   IsEnabled="{x:Bind CanPaste,Mode=OneWay}">
                     <AppBarButton.KeyboardAccelerators>
@@ -82,7 +93,7 @@
                         <KeyboardAccelerator Modifiers="Control" Key="P"/>
                     </AppBarButton.KeyboardAccelerators>
                 </AppBarButton>
-                <AppBarButton Icon="Save" x:Uid="ButtonSave"
+                <AppBarButton Icon="Save" x:Uid="ButtonSave" IsCompact="False"
                               IsEnabled="{Binding ElementName=measureCanvas,Path=CanMeasure,Mode=OneWay}">
                     <AppBarButton.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Control" Key="S"/>
@@ -94,9 +105,8 @@
                         </MenuFlyout>
                     </AppBarButton.Flyout>
                 </AppBarButton>
-                <AppBarButton LabelPosition="Collapsed" x:Uid="ButtonSideBar"
-                              Icon="ClosePane" Click="SidePane_Click"  
-                              Style="{StaticResource appButton}"/>
+                <AppBarToggleButton x:Uid="ButtonSideBar" LabelPosition="Collapsed"
+                              Icon="DockRight" Click="SidePane_Click"/>
             </CommandBar>
 
             <mse:MeasureToolBar Grid.Column="1" 
@@ -123,7 +133,7 @@
                                OnSelectedChanged="measureCanvas_OnSelectedChanged"/>
             <mse:MeasureDetail Grid.Column="1" HorizontalAlignment="Right"
                             Visibility="{x:Bind DetailVisiable,Mode=OneWay}"
-                            x:Name="measureDetail" Width="256">
+                            x:Name="measureDetail" Width="{StaticResource MeasureDetailPaneWidth}">
                 <mse:MeasureDetail.Transitions>
                     <TransitionCollection>
                         <PaneThemeTransition Edge="Right" />
@@ -131,6 +141,6 @@
                 </mse:MeasureDetail.Transitions>
             </mse:MeasureDetail>
         </Grid>
-       
+
     </Grid>
 </Page>

@@ -119,9 +119,9 @@ namespace MeasurePixels.Pages
         {
             var resources = ResourceLoader.GetForCurrentView();
             DetailVisiable = !DetailVisiable;
-            var button = sender as AppBarButton;
+            var button = sender as AppBarToggleButton;
             (button.Icon as SymbolIcon).Symbol = DetailVisiable ?
-                 Symbol.OpenPane : Symbol.ClosePane;
+                 Symbol.OpenPane : Symbol.DockRight;
             button.SetValue(ToolTipService.ToolTipProperty,
                 resources.GetString(
                     DetailVisiable ? "CloseSideBar" : "OpenSideBar"));
@@ -152,9 +152,10 @@ namespace MeasurePixels.Pages
                                     DateTime.Now.ToString("yyyyMMddHHmmss")
             };
             picker.FileTypeChoices.Add("PNG", new[] { ".png" });
-            picker.FileTypeChoices.Add("JPG", new[] { ".jpg", ".jpeg", ".jpe", ".jfif" });
+            picker.FileTypeChoices.Add("JPG", new[] { ".jpg", ".jpeg", ".jpe" });
             picker.FileTypeChoices.Add("BMP", new[] { ".bmp" });
             //picker.FileTypeChoices.Add("GIF", new[] { ".gif" });
+            picker.FileTypeChoices.Add("TIFF", new[] { ".tif",".tiff" });
             return await picker.PickSaveFileAsync();
         }
 

@@ -6,100 +6,103 @@
     xmlns:hp="using:MeasurePixels.Helpers"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" d:Width="400" d:Height="700"
+    mc:Ignorable="d" d:Width="800" d:Height="700"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.Resources>
-        <hp:EnumBoolConverter x:Key="enumBoolConverter"/>
-        <Style x:Key="subTitle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="15"/>
-        </Style>
-        <Style x:Key="caption" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Foreground" Value="#777"/>
-        </Style>
-        <Style TargetType="Slider">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="MinWidth" Value="256"/>
-            <Setter Property="TickPlacement" Value="Outside"/>
-        </Style>
-    </Page.Resources>
-    
-    <Grid Padding="22,20">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
-            <StackPanel Spacing="15">
-                <TextBlock Style="{ThemeResource TitleTextBlockStyle}" x:Uid="SettingsTitle"  />
+  <Page.Resources>
+    <hp:EnumBoolConverter x:Key="enumBoolConverter"/>
+    <Style x:Key="subTitle" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="15"/>
+    </Style>
+    <Style x:Key="caption" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="Foreground" Value="#777"/>
+    </Style>
+    <Style TargetType="Slider">
+      <Setter Property="HorizontalAlignment" Value="Left"/>
+      <Setter Property="MinWidth" Value="480"/>
+      <Setter Property="TickPlacement" Value="Outside"/>
+    </Style>
+  </Page.Resources>
 
-                <StackPanel Spacing="5">
-                    <TextBlock x:Uid="SettingsThemeTitle" Style="{StaticResource subTitle}"/>
-                    <TextBlock x:Uid="SettingsThemeDesc" Style="{StaticResource caption}"/>
-                    <RadioButton x:Uid="SettingsThemeLight" GroupName="theme_mode"
+  <Grid Margin="60,20">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto">
+      <StackPanel Spacing="15">
+        <TextBlock Style="{ThemeResource TitleTextBlockStyle}" x:Uid="SettingsTitle"  />
+
+        <StackPanel Spacing="5">
+          <TextBlock x:Uid="SettingsThemeTitle" Style="{StaticResource subTitle}"/>
+          <TextBlock x:Uid="SettingsThemeDesc" Style="{StaticResource caption}"/>
+          <RadioButton x:Uid="SettingsThemeLight" GroupName="theme_mode"
                                  IsChecked="{x:Bind settings.Theme,Mode=TwoWay,
                                     ConverterParameter=1, Converter={StaticResource enumBoolConverter}}"/>
-                    <RadioButton x:Uid="SettingsThemeDark" GroupName="theme_mode" 
+          <RadioButton x:Uid="SettingsThemeDark" GroupName="theme_mode" 
                                  IsChecked="{x:Bind settings.Theme,Mode=TwoWay,
                                     ConverterParameter=2, Converter={StaticResource enumBoolConverter}}"/>
-                    <RadioButton x:Uid="SettingsThemeSystem" GroupName="theme_mode" 
+          <RadioButton x:Uid="SettingsThemeSystem" GroupName="theme_mode" 
                                  IsChecked="{x:Bind settings.Theme,Mode=TwoWay,
                                     ConverterParameter=0, Converter={StaticResource enumBoolConverter}}"/>
-                </StackPanel>
+        </StackPanel>
 
-                <StackPanel Spacing="3">
-                    <TextBlock x:Uid="SettingsSaveTitle"  Style="{StaticResource subTitle}"/>
-                    <TextBlock  x:Uid="SettingsSaveDesc" Style="{StaticResource caption}"/>
-                    <ToggleSwitch IsOn="{x:Bind settings.AskSaveOnClose,Mode=TwoWay}"
-                                  x:Uid="SettingsSaveSwitch"/>
-                </StackPanel>
+        <StackPanel Spacing="3">
+          <TextBlock x:Uid="SettingsSaveTitle"  Style="{StaticResource subTitle}"/>
+          <TextBlock  x:Uid="SettingsSaveDesc" Style="{StaticResource caption}"/>
+          <ToggleSwitch x:Uid="SettingsSaveSwitch" IsOn="{x:Bind settings.AskSaveOnClose,Mode=TwoWay}"/>
+        </StackPanel>
 
-                <StackPanel Spacing="5">
-                    <TextBlock x:Uid="SettingsMagnifierTitle" Style="{StaticResource subTitle}"/>
-                    <TextBlock x:Uid="SettingsMagnifierDesc" Style="{StaticResource caption}"/>
+        <StackPanel Spacing="5">
+          <TextBlock x:Uid="SettingsMagnifierTitle" Style="{StaticResource subTitle}"/>
+          <TextBlock x:Uid="SettingsMagnifierDesc" Style="{StaticResource caption}"/>
 
-                    <TextBlock x:Uid="SettingsMagnifierRadius"/>
-                    <StackPanel Orientation="Horizontal" Spacing="20">
-                        <Slider Minimum="30" Maximum="100" StepFrequency="2" TickFrequency="10"
+          <ToggleSwitch x:Uid="SettingsMagnifierCrosshairsSwitch" IsOn="{x:Bind settings.MagnifierShowCrosshairs,Mode=TwoWay}"/>
+          <TextBlock x:Uid="SettingsMagnifierRadius"/>
+          <StackPanel Orientation="Horizontal" Spacing="20">
+            <Slider Minimum="30" Maximum="300" StepFrequency="2" TickFrequency="30"
                             Value="{x:Bind settings.MagnifierRadius,Mode=TwoWay}"/>
-                        <TextBlock VerticalAlignment="Center" Text="{x:Bind settings.MagnifierRadius,Mode=OneWay}"/>
-                    </StackPanel>
+            <TextBlock VerticalAlignment="Center" Text="{x:Bind settings.MagnifierRadius,Mode=OneWay}"/>
+          </StackPanel>
 
-
-                    <TextBlock x:Uid="SettingsMagnifierScale"/>
-                    <StackPanel Orientation="Horizontal" Spacing="20">
-                        <Slider Minimum="2"  StepFrequency="1" Maximum="16" TickFrequency="2"
+          <TextBlock x:Uid="SettingsMagnifierScale"/>
+          <StackPanel Orientation="Horizontal" Spacing="20">
+            <Slider Minimum="2" StepFrequency="1" Maximum="32" TickFrequency="2"
                              Value="{x:Bind settings.MagnifierScale,Mode=TwoWay}"/>
-                        <TextBlock VerticalAlignment="Center" Text="{x:Bind settings.MagnifierScale,Mode=OneWay}"/>
-                    </StackPanel>
-                   
-                </StackPanel>
-                <StackPanel>
-                    <TextBlock x:Uid="SettingsAboutTitle" Style="{ThemeResource TitleTextBlockStyle}"/>
-                    <TextBlock Text="@leisn" Style="{StaticResource caption}"/>
+            <TextBlock VerticalAlignment="Center" Text="{x:Bind settings.MagnifierScale,Mode=OneWay}"/>
+          </StackPanel>
 
-                    <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,5,0,0">
-                        <TextBlock  x:Uid="SettingsVersion" Style="{StaticResource subTitle}"/>
-                        <TextBlock Text="1. 0. 0" FontSize="14"  VerticalAlignment="Bottom"/>
-                    </StackPanel>
-                    <HyperlinkButton NavigateUri="https://github.com/leisn/MeasurePixels"
-                                     Content="Github" Padding="0,3,0,0"/>
-                </StackPanel>
+        </StackPanel>
+        <StackPanel Spacing="5">
+          <StackPanel Orientation="Horizontal">
+            <TextBlock x:Uid="SettingsAboutTitle" Style="{ThemeResource TitleTextBlockStyle}"/>
+            <TextBlock Text="@leisn" Style="{StaticResource caption}" VerticalAlignment="Bottom"/>
+          </StackPanel>
 
-                <StackPanel>
-                    <TextBlock x:Uid="SettingsPrivacy" Style="{ThemeResource TitleTextBlockStyle}"/>
-                    <HyperlinkButton x:Uid="SettingsPrivacyPolicy"
+          <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBlock  x:Uid="SettingsVersion" Style="{StaticResource subTitle}" VerticalAlignment="Center"/>
+            <TextBlock Text="1. 0. 0" FontSize="14" VerticalAlignment="Center"/>
+            <HyperlinkButton NavigateUri="https://github.com/leisn/MeasurePixels"
+                           Content="Github" />
+          </StackPanel>
+
+          <Button x:Uid="SettingsRateButton" Click="Ratings_Click"/>
+        </StackPanel>
+
+        <StackPanel>
+          <TextBlock x:Uid="SettingsPrivacy" Style="{ThemeResource TitleTextBlockStyle}"/>
+          <HyperlinkButton x:Uid="SettingsPrivacyPolicy"
                         NavigateUri="https://raw.githubusercontent.com/leisn/MeasurePixels/master/PrivacyPolicy"
                                      FontSize="16"/>
-                </StackPanel>
-                
-                <StackPanel>
-                    <TextBlock  x:Uid="SettingsReferTitle" Style="{ThemeResource TitleTextBlockStyle}"/>
-                    <StackPanel Orientation="Horizontal" Spacing="10">
-                        <HyperlinkButton Content="WinUI" 
-                                     NavigateUri="https://github.com/microsoft/microsoft-ui-xaml"/>
-                        <HyperlinkButton NavigateUri="https://github.com/microsoft/microsoft-ui-xaml/blob/master/LICENSE">MIT License</HyperlinkButton>
+        </StackPanel>
 
-                    </StackPanel>
-                    </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
-    </Grid>
+        <StackPanel>
+          <TextBlock  x:Uid="SettingsReferTitle" Style="{ThemeResource TitleTextBlockStyle}"/>
+          <StackPanel Orientation="Horizontal" Spacing="10">
+            <HyperlinkButton Content="WinUI" 
+                                     NavigateUri="https://github.com/microsoft/microsoft-ui-xaml"/>
+            <HyperlinkButton NavigateUri="https://github.com/microsoft/microsoft-ui-xaml/blob/master/LICENSE">MIT License</HyperlinkButton>
+
+          </StackPanel>
+        </StackPanel>
+      </StackPanel>
+    </ScrollViewer>
+  </Grid>
 </Page>

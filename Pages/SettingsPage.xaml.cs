@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Services.Store;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,6 +29,12 @@ namespace MeasurePixels.Pages
         {
             this.InitializeComponent();
             settings = AppSettings.Current;
+        }
+
+        private async void Ratings_Click(object sender, RoutedEventArgs e)
+        {
+            bool result = await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9N6VNCV9LF5K"));
+            System.Diagnostics.Debug.WriteLine("LaunchRatingResult=" + result);
         }
     }
 }

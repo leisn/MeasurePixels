@@ -187,7 +187,7 @@ namespace MeasurePixels.Measure.Objects
             currentIndex--;
         }
 
-        [Obsolete]
+        /**[Obsolete]
         public void DrawCommon(CanvasDrawingSession g)
         {
             //save tansform
@@ -276,7 +276,7 @@ namespace MeasurePixels.Measure.Objects
             var rect = new Rect(left, top, size.Width, size.Height);
             g.FillRectangle(rect, Pen.TextBackground);
             g.DrawTextLayout(textLayout, (float)left + 5, (float)top, Pen.TextColor);
-        }
+        }*/
 
         protected override void UpdateGeometries()
         {

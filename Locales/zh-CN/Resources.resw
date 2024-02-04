@@ -156,6 +156,9 @@
   <data name="ButtonDelete.ToolTipService.ToolTip" xml:space="preserve">
     <value>删除 (Del, Ctrl+D)</value>
   </data>
+  <data name="ButtonFitView.ToolTipService.ToolTip" xml:space="preserve">
+    <value>图片适应视图</value>
+  </data>
   <data name="ButtonGoBack.ToolTipService.ToolTip" xml:space="preserve">
     <value>向后导航</value>
   </data>
@@ -193,7 +196,7 @@
     <value>意外错误</value>
   </data>
   <data name="ErrorDialogContent.Text" xml:space="preserve">
-    <value>一个未知的错误，请反馈给我们知道以便修改这个问题。</value>
+    <value>一个未知的错误，请反馈给我，以便修改这个问题。</value>
   </data>
   <data name="FontPickerBackground.Text" xml:space="preserve">
     <value>背景色</value>
@@ -259,7 +262,7 @@
     <value>当前鼠标相对于图片左上角的位置</value>
   </data>
   <data name="NavigtionFailedContent" xml:space="preserve">
-    <value>不知为何导航失败了，请反馈给我们知道以便修改这个问题</value>
+    <value>不知为何导航失败了，请反馈给我，以便修改这个问题</value>
   </data>
   <data name="NavigtionFailedTitle" xml:space="preserve">
     <value>导航失败</value>
@@ -267,11 +270,20 @@
   <data name="Ok" xml:space="preserve">
     <value>确定</value>
   </data>
+  <data name="OpenImageFailed" xml:space="preserve">
+    <value>打开图像失败!</value>
+  </data>
   <data name="OpenSideBar" xml:space="preserve">
     <value>打开侧边栏</value>
   </data>
   <data name="SettingsAboutTitle.Text" xml:space="preserve">
     <value>关于</value>
+  </data>
+  <data name="SettingsMagnifierCrosshairsSwitch.OffContent" xml:space="preserve">
+    <value>隐藏十字标</value>
+  </data>
+  <data name="SettingsMagnifierCrosshairsSwitch.OnContent" xml:space="preserve">
+    <value>显示十字标</value>
   </data>
   <data name="SettingsMagnifierDesc.Text" xml:space="preserve">
     <value>修改放大镜属性</value>
@@ -290,6 +302,9 @@
   </data>
   <data name="SettingsPrivacyPolicy.Content" xml:space="preserve">
     <value>隐私声明</value>
+  </data>
+  <data name="SettingsRateButton.Content" xml:space="preserve">
+    <value>评分和评价</value>
   </data>
   <data name="SettingsReferTitle.Text" xml:space="preserve">
     <value>参考</value>

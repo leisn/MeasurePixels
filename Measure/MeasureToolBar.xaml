@@ -33,44 +33,48 @@
                 <FontIcon Glyph="&#xE8B0;"/>
             </RadioButton>
             <RadioButton x:Uid="MeasureToolSegment" GroupName="measure_tool"
-                         IsChecked="{x:Bind  TargetCanvas.ActiveTool,Mode=TwoWay,
+                         Tag="1" IsChecked="{x:Bind  TargetCanvas.ActiveTool,Mode=TwoWay,
                                     ConverterParameter=1, Converter={StaticResource converter}}" 
-                         Tag="1" RightTapped="ItemRightTapped">
+                         Unchecked="MesureToolUnchecked"
+                         RightTapped="MesureToolRightTapped" Tapped="MeasureToolTapped">
                 <PathIcon Width="18" Height="18"
                             Data="M18,12v1H0v-1H18z M17,5v2H1V5H0v5h1V8h16v2h1V5H17z"/>
             </RadioButton>
-            <RadioButton  x:Uid="MeasureToolAngle" GroupName="measure_tool"
-                         IsChecked="{x:Bind TargetCanvas.ActiveTool,Mode=TwoWay,
+            <RadioButton x:Uid="MeasureToolAngle" GroupName="measure_tool"
+                         Tag="2" IsChecked="{x:Bind TargetCanvas.ActiveTool,Mode=TwoWay,
                                     ConverterParameter=2, Converter={StaticResource converter}}"
-                         Tag="2" RightTapped="ItemRightTapped">
+                         Unchecked="MesureToolUnchecked"
+                         RightTapped="MesureToolRightTapped" Tapped="MeasureToolTapped">
                 <PathIcon Width="18" Height="18"
                             Data="M9.2,15c0-0.2,0.1-0.3,0.1-0.5c0-2-1.1-3.7-2.8-4.5l8.1-9.4L13.7,0L0,16h0.7H16v-1H9.2z M2.3,15l3.5-4.2
 	                                c1.4,0.6,2.5,2,2.5,3.7c0,0.2,0,0.3-0.1,0.5H2.3z"/>
             </RadioButton>
             <RadioButton x:Uid="MeasureToolEdge" GroupName="measure_tool"
-                         IsChecked="{x:Bind  TargetCanvas.ActiveTool,Mode=TwoWay,
+                         Tag="3" IsChecked="{x:Bind  TargetCanvas.ActiveTool,Mode=TwoWay,
                                     ConverterParameter=3, Converter={StaticResource converter}}"
-                         Tag="3" RightTapped="ItemRightTapped">
+                         Unchecked="MesureToolUnchecked"
+                         RightTapped="MesureToolRightTapped" Tapped="MeasureToolTapped">
                 <Grid Width="18" Height="18">
                     <PathIcon Data="M12,4V0h-1v2H1V0H0v4h1V3h10v1H12z M14,7V6h4v1h-2v10h2v1h-4v-1h1V7H14z"/>
                     <PathIcon Data="M0,6v12h12V6H0z M11,17H1V7h10V17z"/>
                 </Grid>
             </RadioButton>
             <RadioButton x:Uid="MeasureToolColor" GroupName="measure_tool"
-                         IsChecked="{x:Bind  TargetCanvas.ActiveTool,Mode=TwoWay,
+                         Tag="4" IsChecked="{x:Bind  TargetCanvas.ActiveTool,Mode=TwoWay,
                                     ConverterParameter=4, Converter={StaticResource converter}}"
-                         Tag="4" RightTapped="ItemRightTapped">
+                         Unchecked="MesureToolUnchecked"
+                         RightTapped="MesureToolRightTapped" Tapped="MeasureToolTapped">
                 <FontIcon Glyph="&#xEF3C;"/>
             </RadioButton>
             <ToggleButton x:Uid="MeasureToolMagnifier" IsChecked="{x:Bind TargetCanvas.IsMagnifierVisible,Mode=TwoWay}">
-                <!--<FontIcon Glyph="&#xE094;"/>-->
-                <Grid Width="18" Height="18">
+                <FontIcon Glyph="&#xE094;"/>
+            <!--<Grid Width="18" Height="18">
                     <PathIcon Data="M9,0C4,0,0,4,0,9s4,9,9,9s9-4,9-9S14,0,9,0z M9,16.9c-4.3,0-7.9-3.5-7.9-7.9c0-4.3,3.5-7.9,7.9-7.9s7.9,3.5,7.9,7.9
 		C16.9,13.3,13.3,16.9,9,16.9z"/>
                     <PathIcon Data="M13,10h-3v3H8v-3H5V8h3V5h2v3h3V10z"/>
-                </Grid>
+                </Grid>-->
             </ToggleButton>
-            <ToggleButton  x:Uid="MeasureToolObjects" IsChecked="{x:Bind TargetCanvas.IsOjbectsVisible,Mode=TwoWay}">
+            <ToggleButton  x:Uid="MeasureToolObjects" IsChecked="{x:Bind TargetCanvas.IsOjbectsVisible,Mode=TwoWay}" IsThreeState="True">
                 <FontIcon Glyph="&#xE052;"/>
             </ToggleButton>
         </StackPanel>

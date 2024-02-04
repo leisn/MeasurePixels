@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
+using System.Resources;
 using System.Threading.Tasks;
+
+using MeasurePixels.Helpers;
+using MeasurePixels.Pages;
 
 using Microsoft.Graphics.Canvas;
 using Microsoft.Graphics.Canvas.Text;
@@ -8,8 +13,10 @@ using Microsoft.Graphics.Canvas.UI;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 
 using Windows.ApplicationModel.DataTransfer;
+using Windows.ApplicationModel.Resources;
 using Windows.Graphics.DirectX;
 using Windows.Storage;
+using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -23,11 +30,11 @@ namespace MeasurePixels.Measure
         public MeasureCanvas()
         {
             this.InitializeComponent();
-            this.initCavansClearColor();
+            this.InitCanvasClearColor();
             settings.ThemeChanged += Settings_ThemeChanged;
         }
 
-        private void initCavansClearColor()
+        private void InitCanvasClearColor()
         {
             Color color = ColorExts.FromHex("#C7C8C9");
             if (settings.Theme == ElementTheme.Dark
@@ -156,12 +163,16 @@ namespace MeasurePixels.Measure
             catch (Exception e)
             {
                 Debug.WriteLine(e.GetType() + ":\n" + e);//ignore
+                await Toast.ShowAsync(
+                    ResourceLoader.GetForCurrentView().GetString("OpenImageFailed")
+                    + $"\n{e.Message}");
             }
             finally
             {
                 stream?.Dispose();
             }
         }
+
 
         private async Task<(bool IsImage, IRandomAccessStreamWithContentType Stream)>
             TryParseImage(IStorageItem item)
@@ -201,6 +212,9 @@ namespace MeasurePixels.Measure
                 case "image/gif":
                     fileFormat = CanvasBitmapFileFormat.Gif;
                     break;
+                case "image/tiff":
+                    fileFormat = CanvasBitmapFileFormat.Tiff;
+                    break;
                 case "image/png":
                 default:
                     break;
@@ -229,5 +243,34 @@ namespace MeasurePixels.Measure
             target.Dispose();
         }
 
+        private async void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new FileOpenPicker
+            {
+                SuggestedStartLocation = PickerLocationId.PicturesLibrary,
+                ViewMode = PickerViewMode.Thumbnail,
+            };
+            picker.FileTypeFilter.Add(".png");
+            picker.FileTypeFilter.Add(".jpg");
+            picker.FileTypeFilter.Add(".jpeg");
+            picker.FileTypeFilter.Add(".jpe");
+            picker.FileTypeFilter.Add(".bmp");
+            picker.FileTypeFilter.Add(".tif");
+            picker.FileTypeFilter.Add(".tiff");
+
+            var file = await picker.PickSingleFileAsync();
+            if (file == null) return;
+
+            var (isImage, stream) = await TryParseImage(file);
+            if (isImage && stream != null)
+            {
+                var bitmap = await CanvasBitmap.LoadAsync(this.canvas, stream);
+                this.Update(bitmap);
+            }
+            else
+            {
+                await Toast.ShowAsync(ResourceLoader.GetForCurrentView().GetString("OpenImageFailed"));
+            }
+        }
     }
 }

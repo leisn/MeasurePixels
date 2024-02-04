@@ -10,7 +10,7 @@
 
   <Identity
     Name="11351leisn.MeasurePixels"
-    Publisher="CN=96E782D8-9A0E-4DD9-8DD8-5BD708C018E4"
+    Publisher="CN=leisn"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="7235c94b-d2c5-4c00-bd3f-223660cd1e8f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
